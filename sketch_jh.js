@@ -59,6 +59,8 @@ function setup() {
         investor.total +=amt;
     }
 
+    //afjsdalkkf
+
     print(companies.size);
     print(investors.size);
     print(companies);
@@ -110,7 +112,7 @@ function setup() {
     // print(myData.rows.length);
 
     rectMode(CENTER);
-    // noLoop();
+    noLoop();
 }
 
 function draw() {
@@ -118,28 +120,18 @@ function draw() {
     background(200);
     textSize(10);
     hover();
-    // for(let row of myData.rows) {
 
-    //     let amt = row.getNum("amount_usd");
-    //     let s = sqrt(amt/1E6);
-
-    //     ellipse(random(0, width), random(0, height), s, s);
-    // }
-
+    // console.log(topCompanies[0].investments[0].investor);
     for(let c of topCompanies) {
-        c.draw();
+        for (let ii of c.investments) {
+            c.draw(ii.investor);
+        }
     }
 
+    // console.log(topInvestors[0].investments[0].company);
     for (let i of topInvestors) {
-        i.draw();
-    }
-
-    // draw lines connecting companies to investors
-    for (let c of topCompanies) {
-        for (let inv of c.investments) {
-            let ii = investors.get(inv.investor.name);
-            stroke(0, 10);
-            // line(c.x, c.y, ii.x, ii.y);
+        for (let ii of i.investments) {
+            i.draw(ii.company);
         }
     }
 }
@@ -179,9 +171,11 @@ class Company {
         return sqrt(this.total / 1E6)/4;
     }
 
-    draw() {
+    draw(investor) {
         if (this.hover) {
             fill(255, 0, 0);
+            stroke(0, 50);
+            line(this.x, this.y,  investor.x,  investor.y);
         } else {
             fill(255, 255, 255);
         }
@@ -208,9 +202,11 @@ class Investor {
         return sqrt(this.total / 1E6)/4;
     }
 
-    draw() {
+    draw(company) {
         if (this.hover) {
             fill(255, 0, 0);
+            stroke(0, 10);
+            line(this.x, this.y,  company.x,  company.y);
         } else {
             fill(255, 255, 255);
         }
@@ -231,4 +227,3 @@ class Investment {
         this.date = date;
     }
 }
-
