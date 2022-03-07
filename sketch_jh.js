@@ -112,7 +112,7 @@ function setup() {
     // print(myData.rows.length);
 
     rectMode(CENTER);
-    noLoop();
+    // noLoop();
 }
 
 function draw() {
@@ -227,3 +227,4 @@ class Investment {
         this.date = date;
     }
 }
+
