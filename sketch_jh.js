@@ -111,7 +111,15 @@ function setup() {
 
     // print(myData.rows.length);
 
-    rectMode(CENTER);
+    console.log("tC:", topCompanies[0].name);
+    console.log("# investments:", topCompanies[0].investments.length);
+    console.log("investments:", topCompanies[0].investments);
+    console.log("top investor:", topCompanies[0].investments[0].investor.name)
+    console.log("investor", topCompanies[0].investments[0].investor);
+    
+    
+    // console.log("company", topInvestors[0].investments[0].company);
+    // rectMode(CENTER);
     // noLoop();
 }
 
@@ -121,14 +129,12 @@ function draw() {
     textSize(10);
     hover();
 
-    // console.log(topCompanies[0].investments[0].investor);
     for(let c of topCompanies) {
         for (let ii of c.investments) {
             c.draw(ii.investor);
         }
     }
 
-    // console.log(topInvestors[0].investments[0].company);
     for (let i of topInvestors) {
         for (let ii of i.investments) {
             i.draw(ii.company);
@@ -175,11 +181,14 @@ class Company {
         if (this.hover) {
             fill(255, 0, 0);
             stroke(0, 50);
-            line(this.x, this.y,  investor.x,  investor.y);
+            // strokeWeight(investor.total);
+            line(this.x, this.y, investor.x,  investor.y);
         } else {
             fill(255, 255, 255);
         }
         ellipse(this.x, this.y, this.radius()*2, this.radius()*2);
+        fill(0);
+        text(this.name, this.x, this.y);
     }
 }
 
@@ -211,6 +220,8 @@ class Investor {
             fill(255, 255, 255);
         }
         rect(this.x, this.y, this.radius()*2, this.radius()*2, this.radius()/5);
+        fill(0);
+        text(this.name, this.x, this.y);
     }
 }
 
