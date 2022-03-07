@@ -188,6 +188,7 @@ class Company {
         }
         ellipse(this.x, this.y, this.radius()*2, this.radius()*2);
         fill(0);
+        noStroke();
         text(this.name, this.x, this.y);
     }
 }
@@ -221,6 +222,7 @@ class Investor {
         }
         rect(this.x, this.y, this.radius()*2, this.radius()*2, this.radius()/5);
         fill(0);
+        noStroke();
         text(this.name, this.x, this.y);
     }
 }
