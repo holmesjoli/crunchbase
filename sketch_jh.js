@@ -60,6 +60,7 @@ function setup() {
         investor.investments.push(investment);
         investor.total +=amt;
     }
+
     print(companies.size);
     print(investors.size);
     print(companies);
@@ -74,7 +75,7 @@ function setup() {
     tI.sort((a, b) => b.total - a.total);
 
     topCompanies = tC.slice(0, 100);
-    topInvestors = tI.slice(1, 2);
+    topInvestors = tI.slice(0, 100);
 
     for (let c of topCompanies) {
         topCompaniesName.push(c.name);
@@ -85,6 +86,7 @@ function setup() {
     }
 
     console.log(topCompaniesName);
+    console.log(topInvestorsName);
     /*  Verbose sort
     function fSort(a, b) {
         let a_amt = a.getNum("amount_usd");
@@ -108,7 +110,6 @@ function setup() {
     // myData.rows = myData.rows.filter((a) => a.getNum("amount_usd") >= 1E8);
 
     // print(myData.rows.length);
-
     // console.log("tC:", topCompanies[0].name);
     // console.log("# investments:", topCompanies[0].investments.length);
     // console.log("investments:", topCompanies[0].investments);
@@ -117,8 +118,8 @@ function setup() {
     
     for(let c of topCompanies) {
         for (let ii of c.investments) {
-            for (i of topInvestors) {
-                if (i.name === ii.investor.name) {
+            for (n of topInvestorsName) {
+                if (n === ii.investor.name) {
                     ii.investor.top = true;
                 };
             }
@@ -127,28 +128,16 @@ function setup() {
 
     for(let i of topInvestors) {
         for (let ii of i.investments) {
-            for (c of topCompanies) {
-                // console.log(c.name);
-                // console.log(c.name === ii.investor.name)
-                // if (c.name === ii.investor.name) {
-                //     ii.company.top = true;
-                // };
+            for (n of topCompaniesName) {
+                if (n === ii.investor.name) {
+                    ii.investor.top = true;
+                };
             }
         }
     }
     
     console.log( Array.from(topCompanies.keys()));
     console.log(topInvestors[0].investments[0].company);
-
-    for (let i of topInvestors) {
-        for (let ii of i.investments) {
-            console.log(ii.investor.top);
-            // if (ii.investor.top) {
-            //     i.draw(ii.company);
-            // }
-        }
-    }
-
 
     rectMode(CENTER);
     // noLoop();
@@ -158,6 +147,7 @@ function draw() {
 
     background(200);
     textSize(10);
+    noStroke();
     hover();
 
     for(let c of topCompanies) {
@@ -230,9 +220,11 @@ class Company {
             fill(255, 255, 255);
         }
         ellipse(this.x, this.y, this.radius()*2, this.radius()*2);
-        fill(0);
-        noStroke();
-        text(this.name, this.x, this.y);
+        if (this.hover) {
+            fill(0);
+            noStroke();
+            text(this.name, this.x, this.y);
+        }
     }
 }
 
@@ -266,9 +258,11 @@ class Investor {
             fill(255, 255, 255);
         }
         rect(this.x, this.y, this.radius()*2, this.radius()*2, this.radius()/5);
-        fill(0);
-        noStroke();
-        text(this.name, this.x, this.y);
+        if (this.hover) {
+            fill(0);
+            noStroke();
+            text(this.name, this.x, this.y);
+        }
     }
 }
 
