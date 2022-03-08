@@ -223,6 +223,12 @@ class Company {
             fill(255, 255, 255);
         }
         ellipse(this.x, this.y, this.radius()*2, this.radius()*2);
+
+        if (this.companyHover) {
+            fill(0);
+            textSize(20);
+            text(this.name, this.x, this.y);
+        }
     }
 }
 
@@ -254,6 +260,12 @@ class Investor {
             fill(255, 255, 255);
         }
         rect(this.x, this.y, this.radius()*2, this.radius()*2, this.radius()/5);
+
+        if (this.investorHover) {
+            fill(0);
+            textSize(20);
+            text(this.name, this.x, this.y);
+        }
     }
 }
 
@@ -272,7 +284,6 @@ class Investment {
     }
 
     strokeSize(company, investor) {
-
         if (this.hoverType === "company") {
             return this.amt/company.total*100;
         } else if (this.hoverType === "investor") {
@@ -280,17 +291,20 @@ class Investment {
         }
     }
 
+    textHover(company, investor) {
+        if (this.hoverType === "company") {
+            text(investor.name, investor.x, investor.y);
+        } else if (this.hoverType === "investor") {
+            text(company.name, company.x, company.y);
+        }
+    }
+
     draw(company, investor) {
+        this.textHover(company, investor);
         stroke(0, 100);
         strokeWeight(this.strokeSize(company, investor));
         line(company.x, company.y, investor.x,  investor.y);
         noStroke();
-
-        fill(0);
-        textSize(20);
-        text(company.name, company.x, company.y);
-
-        text(investor.name, investor.x, investor.y);
         
     }
 }
