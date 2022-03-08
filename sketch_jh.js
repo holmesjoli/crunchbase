@@ -210,12 +210,17 @@ class Company {
         return sqrt(this.total / 1E6)/4;
     }
 
+    strokeSize() {
+        return this.total/1E9;
+    }
+
     draw(investor) {
         if (this.hover) {
             fill(255, 0, 0);
-            stroke(0, 50);
-            // strokeWeight(investor.total);
+            stroke(0, 100);
+            strokeWeight(this.strokeSize());
             line(this.x, this.y, investor.x,  investor.y);
+            noStroke();
         } else {
             fill(255, 255, 255);
         }
@@ -249,11 +254,17 @@ class Investor {
         return sqrt(this.total / 1E6)/4;
     }
 
+    strokeSize() {
+        return this.total/1E9;
+    }
+
     draw(company) {
         if (this.hover) {
             fill(255, 0, 0);
-            stroke(0, 10);
+            stroke(0, 100);
+            strokeWeight(this.strokeSize());
             line(this.x, this.y,  company.x,  company.y);
+            noStroke();
         } else {
             fill(255, 255, 255);
         }
