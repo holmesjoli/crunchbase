@@ -155,7 +155,7 @@ function draw() {
     for(let c of topCompanies) {
         for (let ii of c.investments) {
             c.draw();
-            if (ii.investor.top && c.hover) {
+            if (ii.investor.top && c.companyHover) {
                 ii.draw(ii.company, ii.investor)
             }
         }
@@ -164,7 +164,7 @@ function draw() {
     for (let i of topInvestors) {
         for (let ii of i.investments) {
             i.draw();
-            if (ii.company.top && i.hover) {
+            if (ii.company.top && i.investorHover) {
                 ii.draw(ii.company, ii.investor)
             }
         }
@@ -174,7 +174,7 @@ function draw() {
 function hover() {
     for (let c of topCompanies) {
         let d = dist(c.x, c.y, mouseX, mouseY);
-        c.hover = d < c.radius();
+        c.companyHover = d < c.radius();
         // for (let ii of c.investments) {
         //     ii.hoverCompany = c.hover;
         // }
@@ -182,7 +182,7 @@ function hover() {
 
     for (let i of topInvestors) {
         let d = dist(i.x, i.y, mouseX, mouseY);
-        i.hover = d < i.radius();
+        i.investorHover = d < i.radius();
         // for (let ii of i.investments) {
         //     ii.hoverInvestor = i.hover;
         // }
@@ -199,7 +199,7 @@ class Company {
     total = 0;
     x;
     y;
-    hover = false;
+    companyHover = false;
     top;
 
     constructor(name) {
@@ -214,18 +214,14 @@ class Company {
         return sqrt(this.total / 1E6)/4;
     }
 
-    strokeSize() {
-        return this.total/1E9;
-    }
-
     draw() {
-        if (this.hover) {
+        if (this.companyHover) {
             fill(255, 0, 0);
         } else {
             fill(255, 255, 255);
         }
         ellipse(this.x, this.y, this.radius()*2, this.radius()*2);
-        if (this.hover) {
+        if (this.companyHover) {
             fill(0);
             noStroke();
             textSize(20);
@@ -240,7 +236,7 @@ class Investor {
     total = 0;
     x;
     y;
-    hover = false;
+    investorHover = false;
     top;
 
     constructor(name) {
@@ -255,18 +251,14 @@ class Investor {
         return sqrt(this.total / 1E6)/4;
     }
 
-    strokeSize() {
-        return this.total/1E9;
-    }
-
     draw() {
-        if (this.hover) {
+        if (this.investorHover) {
             fill(255, 0, 0);
         } else {
             fill(255, 255, 255);
         }
         rect(this.x, this.y, this.radius()*2, this.radius()*2, this.radius()/5);
-        if (this.hover) {
+        if (this.investorHover) {
             fill(0);
             noStroke();
             textSize(20);
@@ -288,9 +280,13 @@ class Investment {
         this.date = date;
     }
 
+    strokeSize(company) {
+        return this.amt/company.total*100;
+    }
+
     draw(company, investor) {
         stroke(0, 100);
-        // strokeWeight(this.strokeSize());
+        strokeWeight(this.strokeSize(company));
         line(company.x, company.y, investor.x,  investor.y);
         noStroke();
     }
