@@ -6,6 +6,8 @@ let investors = new Map();
 
 let topCompanies = [];
 let topInvestors = [];
+let topCompaniesName = []
+let topInvestorsName = [];
 
 function preload() {
     myData = loadTable("./investments.csv", "csv", "header");
@@ -58,9 +60,6 @@ function setup() {
         investor.investments.push(investment);
         investor.total +=amt;
     }
-
-    //afjsdalkkf
-
     print(companies.size);
     print(investors.size);
     print(companies);
@@ -75,8 +74,17 @@ function setup() {
     tI.sort((a, b) => b.total - a.total);
 
     topCompanies = tC.slice(0, 100);
-    topInvestors = tI.slice(0, 100);
+    topInvestors = tI.slice(1, 2);
 
+    for (let c of topCompanies) {
+        topCompaniesName.push(c.name);
+    }
+
+    for (let i of topInvestors) {
+        topInvestorsName.push(i.name);
+    }
+
+    console.log(topCompaniesName);
     /*  Verbose sort
     function fSort(a, b) {
         let a_amt = a.getNum("amount_usd");
@@ -110,7 +118,7 @@ function setup() {
     for(let c of topCompanies) {
         for (let ii of c.investments) {
             for (i of topInvestors) {
-                if(i.name === ii.investor.name) {
+                if (i.name === ii.investor.name) {
                     ii.investor.top = true;
                 };
             }
@@ -120,12 +128,27 @@ function setup() {
     for(let i of topInvestors) {
         for (let ii of i.investments) {
             for (c of topCompanies) {
-                if(c.name === ii.investor.name) {
-                    ii.company.top = true;
-                };
+                // console.log(c.name);
+                // console.log(c.name === ii.investor.name)
+                // if (c.name === ii.investor.name) {
+                //     ii.company.top = true;
+                // };
             }
         }
     }
+    
+    console.log( Array.from(topCompanies.keys()));
+    console.log(topInvestors[0].investments[0].company);
+
+    for (let i of topInvestors) {
+        for (let ii of i.investments) {
+            console.log(ii.investor.top);
+            // if (ii.investor.top) {
+            //     i.draw(ii.company);
+            // }
+        }
+    }
+
 
     rectMode(CENTER);
     // noLoop();
