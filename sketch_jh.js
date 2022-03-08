@@ -129,15 +129,15 @@ function setup() {
     for(let i of topInvestors) {
         for (let ii of i.investments) {
             for (n of topCompaniesName) {
-                if (n === ii.investor.name) {
-                    ii.investor.top = true;
+                if (n === ii.company.name) {
+                    ii.company.top = true;
                 };
             }
         }
     }
-    
-    console.log( Array.from(topCompanies.keys()));
-    console.log(topInvestors[0].investments[0].company);
+
+    print(topCompanies);
+    print(topInvestors);
 
     rectMode(CENTER);
     // noLoop();
@@ -160,7 +160,7 @@ function draw() {
 
     for (let i of topInvestors) {
         for (let ii of i.investments) {
-            if (ii.investor.top) {
+            if (ii.company.top) {
                 i.draw(ii.company);
             }
         }
