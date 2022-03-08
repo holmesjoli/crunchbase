@@ -139,6 +139,8 @@ function setup() {
     print(topCompanies);
     print(topInvestors);
 
+    print(topCompanies[0].investments[0]);
+
     rectMode(CENTER);
     // noLoop();
 }
@@ -152,16 +154,18 @@ function draw() {
 
     for(let c of topCompanies) {
         for (let ii of c.investments) {
-            if (ii.investor.top) {
-                c.draw(ii.investor);
+            c.draw();
+            if (ii.investor.top && c.hover) {
+                ii.draw(ii.company, ii.investor)
             }
         }
     }
 
     for (let i of topInvestors) {
         for (let ii of i.investments) {
-            if (ii.company.top) {
-                i.draw(ii.company);
+            i.draw();
+            if (ii.company.top && i.hover) {
+                ii.draw(ii.company, ii.investor)
             }
         }
     }
@@ -214,13 +218,9 @@ class Company {
         return this.total/1E9;
     }
 
-    draw(investor) {
+    draw() {
         if (this.hover) {
             fill(255, 0, 0);
-            stroke(0, 100);
-            strokeWeight(this.strokeSize());
-            line(this.x, this.y, investor.x,  investor.y);
-            noStroke();
         } else {
             fill(255, 255, 255);
         }
@@ -259,13 +259,9 @@ class Investor {
         return this.total/1E9;
     }
 
-    draw(company) {
+    draw() {
         if (this.hover) {
             fill(255, 0, 0);
-            stroke(0, 100);
-            strokeWeight(this.strokeSize());
-            line(this.x, this.y,  company.x,  company.y);
-            noStroke();
         } else {
             fill(255, 255, 255);
         }
@@ -284,14 +280,19 @@ class Investment {
     investor;
     amt;
     date;
-    hoverCompany = false;
-    hoverInvestor = false;
 
     constructor(company, investor, amt, date) {
         this.company = company;
         this.investor = investor;
         this.amt = amt;
         this.date = date;
+    }
+
+    draw(company, investor) {
+        stroke(0, 100);
+        // strokeWeight(this.strokeSize());
+        line(company.x, company.y, investor.x,  investor.y);
+        noStroke();
     }
 }
 
