@@ -153,22 +153,22 @@ function draw() {
     hover();
 
     for(let c of topCompanies) {
+        c.draw();
         for (let ii of c.investments) {
             if (ii.investor.top && c.companyHover) {
                 ii.hoverType = "company";
                 ii.draw(ii.company, ii.investor)
             }
-            c.draw();
         }
     }
 
     for (let i of topInvestors) {
+        i.draw();
         for (let ii of i.investments) {
             if (ii.company.top && i.investorHover) {
                 ii.hoverType = "investor";
                 ii.draw(ii.company, ii.investor)
             }
-            i.draw();
         }
     }
 }
@@ -259,6 +259,7 @@ class Investor {
         } else {
             fill(255, 255, 255);
         }
+
         rect(this.x, this.y, this.radius()*2, this.radius()*2, this.radius()/5);
 
         if (this.investorHover) {
@@ -292,6 +293,8 @@ class Investment {
     }
 
     textHover(company, investor) {
+        fill(0);
+        textSize(20);
         if (this.hoverType === "company") {
             text(investor.name, investor.x, investor.y);
         } else if (this.hoverType === "investor") {
