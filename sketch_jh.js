@@ -118,10 +118,19 @@ function setup() {
     console.log("top investor:", topCompanies[0].investments[0].investor.name)
     console.log("investor", topCompanies[0].investments[0].investor);
     
-    
+    for(let c of topCompanies) {
+        for (let ii of c.investments) {
+            for (i of topInvestors) {
+                if(i.name === ii.investor.name) {
+                    ii.investor.top = true;
+                };
+            }
+        }
+    }
+    console.log(topCompanies);
     // console.log("company", topInvestors[0].investments[0].company);
     // rectMode(CENTER);
-    // noLoop();
+    noLoop();
 }
 
 function draw() {
@@ -134,6 +143,7 @@ function draw() {
     // console.log("investor", topCompanies[0].investments[0].hoverInvestor);
     for(let c of topCompanies) {
         for (let ii of c.investments) {
+            // console.log(ii.investor.x);
             c.draw(ii.investor);
         }
     }
@@ -174,12 +184,14 @@ class Company {
     x;
     y;
     hover = false;
+    top;
 
     constructor(name) {
         this.name = name;
         this.investments = [];
         this.x = random(0, width/2);
         this.y = random(0, height);
+        this.top = false;
     }
 
     radius() {
@@ -209,12 +221,14 @@ class Investor {
     x;
     y;
     hover = false;
+    top;
 
     constructor(name) {
         this.name = name;
         this.investments = [];
         this.x = random(width/2, width);
         this.y = random(0, height);
+        this.top = false;
     }
 
     radius() {
