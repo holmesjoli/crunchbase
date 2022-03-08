@@ -228,6 +228,7 @@ class Company {
         if (this.hover) {
             fill(0);
             noStroke();
+            textSize(20);
             text(this.name, this.x, this.y);
         }
     }
@@ -272,6 +273,7 @@ class Investor {
         if (this.hover) {
             fill(0);
             noStroke();
+            textSize(20);
             text(this.name, this.x, this.y);
         }
     }
