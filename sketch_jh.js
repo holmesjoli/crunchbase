@@ -74,7 +74,8 @@ function setup() {
     tC.sort((a, b) => b.total - a.total);
     tI.sort((a, b) => b.total - a.total);
 
-    topCompanies = tC.slice(0, 100);
+    topCompanies = tC.slice(1, 2);
+    console.log(topCompanies);
     topInvestors = tI.slice(0, 100);
 
 
@@ -129,6 +130,8 @@ function draw() {
     textSize(10);
     hover();
 
+    // console.log("comapny", topCompanies[0].investments[0].hoverCompany);
+    // console.log("investor", topCompanies[0].investments[0].hoverInvestor);
     for(let c of topCompanies) {
         for (let ii of c.investments) {
             c.draw(ii.investor);
@@ -146,11 +149,17 @@ function hover() {
     for (let c of topCompanies) {
         let d = dist(c.x, c.y, mouseX, mouseY);
         c.hover = d < c.radius();
+        // for (let ii of c.investments) {
+        //     ii.hoverCompany = c.hover;
+        // }
     }
 
     for (let i of topInvestors) {
         let d = dist(i.x, i.y, mouseX, mouseY);
         i.hover = d < i.radius();
+        // for (let ii of i.investments) {
+        //     ii.hoverInvestor = i.hover;
+        // }
     }
 }
 
@@ -232,6 +241,8 @@ class Investment {
     investor;
     amt;
     date;
+    hoverCompany = false;
+    hoverInvestor = false;
 
     constructor(company, investor, amt, date) {
         this.company = company;
