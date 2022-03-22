@@ -18,7 +18,7 @@ let nRow = topN/nCol;
 // console.log(yPosition(nCol, nRow, space = 100));
 
 function preload() {
-    myData = loadTable("./investments.csv", "csv", "header");
+    myData = loadTable("./data/investments.csv", "csv", "header");
 }
 
 function setup() {
