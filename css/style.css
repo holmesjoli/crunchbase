@@ -2,8 +2,17 @@ html, body {
   border: 0;
   margin: 0;
   padding: 0;
+  font-family: "Geomanist", sans-serif;
+  text-align: center;
 }
 
 canvas {
   display: block;
+}
+
+h1 {
+  background-color: #333;
+  color: white;
+  margin: 0;
+  padding: 20px;
 }

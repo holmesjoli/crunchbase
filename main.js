@@ -126,7 +126,7 @@ function setup() {
 
 function draw() {
 
-    background(200);
+    background(203, 221, 255);
     textSize(10);
     noStroke();
     hover();
@@ -195,9 +195,9 @@ class Company {
 
     draw() {
         if (this.companyHover) {
-            fill(255, 0, 0);
-        } else {
             fill(255, 255, 255);
+        } else {
+            fill('rgba(51, 51, 51, .6)');
         }
         ellipse(this.x, this.y, this.radius()*1.5, this.radius()*1.5);
 
@@ -230,9 +230,9 @@ class Investor {
 
     draw() {
         if (this.investorHover) {
-            fill(255, 0, 0);
-        } else {
             fill(255, 255, 255);
+        } else {
+            fill('rgba(51, 51, 51, .6)');
         }
 
         rect(this.x, this.y, this.radius()*1.5, this.radius()*1.5, this.radius()/5);
