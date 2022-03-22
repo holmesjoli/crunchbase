@@ -207,7 +207,8 @@ class Company {
         if (this.companyHover) {
             fill(0);
             textSize(20);
-            text(this.name, this.x - this.xSpace, this.y + 40);;
+            text(this.name, this.x - this.xSpace, this.y + 40);
+            textSize(32);
         }
     }
 }
@@ -244,6 +245,7 @@ class Investor {
             fill(0);
             textSize(20);
             text(this.name, this.x - this.xSpace, this.y + 40);
+            textSize(32);
         }
     }
 }
@@ -278,6 +280,7 @@ class Investment {
         } else if (this.hoverType === "investor") {
             text(company.name, company.x - company.xSpace, company.y + 40);
         }
+        textSize(32);
     }
 
     draw(company, investor) {
