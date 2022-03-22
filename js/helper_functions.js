@@ -24,12 +24,15 @@ function yPosition(nCol, nRow, ySpace, yStart) {
 
 // Position on a grid
 function position(data, nCol, nRow, xSpace = 100, ySpace = 100, xStart = 0, yStart = 0) {
+
     const xPos = xPosition(nCol, nRow, xSpace, xStart);
     const yPos = yPosition(nCol, nRow, ySpace, yStart);
 
     data.forEach(function (d, i) {
         d.x = xPos[i];
         d.y = yPos[i];
+        d.xSpace = xSpace;
+        d.ySpace = ySpace;
     });
 
     return data;

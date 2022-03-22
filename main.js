@@ -9,7 +9,7 @@ let topInvestors = [];
 let topCompaniesName = []
 let topInvestorsName = [];
 
-let margin = {top: 50, bottom: 50, left: 50, right: 50}
+let margin = {top: 50, bottom: 50, left: 200, right: 50}
 let topN = 100;
 let nCol = 10;
 let nRow = topN/nCol;
@@ -88,8 +88,8 @@ function setup() {
     console.log(xSpace)
     console.log(ySpace)
 
-    topCompanies = position(topCompanies, nCol, nRow, xSpace, ySpace);
-    topInvestors = position(topInvestors, nCol, nRow, xSpace, ySpace, xStart = innerWidth/2,);
+    topCompanies = position(topCompanies, nCol, nRow, xSpace, ySpace, xStart = margin.left);
+    topInvestors = position(topInvestors, nCol, nRow, xSpace, ySpace, xStart = innerWidth/2 + margin.left);
     console.log(topInvestors);
 
     for (let c of topCompanies) {
@@ -199,12 +199,12 @@ class Company {
         } else {
             fill(255, 255, 255);
         }
-        ellipse(this.x, this.y, this.radius()*2, this.radius()*2);
+        ellipse(this.x, this.y, this.radius()*1.5, this.radius()*1.5);
 
         if (this.companyHover) {
             fill(0);
             textSize(20);
-            text(this.name, this.x, this.y);
+            text(this.name, this.x - this.xSpace, this.y + 40);;
         }
     }
 }
@@ -235,12 +235,12 @@ class Investor {
             fill(255, 255, 255);
         }
 
-        rect(this.x, this.y, this.radius()*2, this.radius()*2, this.radius()/5);
+        rect(this.x, this.y, this.radius()*1.5, this.radius()*1.5, this.radius()/5);
 
         if (this.investorHover) {
             fill(0);
             textSize(20);
-            text(this.name, this.x, this.y);
+            text(this.name, this.x - this.xSpace, this.y + 40);
         }
     }
 }
@@ -271,9 +271,9 @@ class Investment {
         fill(0);
         textSize(20);
         if (this.hoverType === "company") {
-            text(investor.name, investor.x, investor.y);
+            text(investor.name, investor.x - investor.xSpace, investor.y + 40);
         } else if (this.hoverType === "investor") {
-            text(company.name, company.x, company.y);
+            text(company.name, company.x - company.xSpace, company.y + 40);
         }
     }
 
