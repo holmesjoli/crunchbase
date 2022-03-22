@@ -26,6 +26,8 @@ function setup() {
     let c = createCanvas(windowWidth, windowHeight);
     let innerWidth = width - margin.left - margin.right;
     let innerHeight = height - margin.top - margin.bottom;
+    let xSpace = innerWidth/2/nCol;
+    let ySpace = innerHeight/nRow;
 
     c.parent("sketch");
 
@@ -83,11 +85,6 @@ function setup() {
     topCompanies = tC.slice(0, topN);
     topInvestors = tI.slice(0, topN);
 
-    let xSpace = innerWidth/2/nCol;
-    let ySpace = innerHeight/nRow;
-    console.log(xSpace)
-    console.log(ySpace)
-
     topCompanies = position(topCompanies, nCol, nRow, xSpace, ySpace, xStart = margin.left);
     topInvestors = position(topInvestors, nCol, nRow, xSpace, ySpace, xStart = innerWidth/2 + margin.left);
     console.log(topInvestors);
@@ -126,10 +123,16 @@ function setup() {
 
 function draw() {
 
+    let xSpace = innerWidth/2/nCol;
+
     background(203, 221, 255);
-    textSize(10);
     noStroke();
     hover();
+
+    fill(0);
+    text("Companies", margin.left + xSpace/2, 50);
+    text("Investors", margin.left + innerWidth/2 - margin.right, 50);
+    textSize(32);
 
     for(let c of topCompanies) {
         c.draw();
