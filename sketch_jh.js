@@ -10,6 +10,12 @@ let topCompaniesName = []
 let topInvestorsName = [];
 
 let margin = {top: 50, bottom: 50, left: 50, right: 50}
+let topN = 100;
+let nCol = 10;
+let nRow = topN/nCol;
+
+// console.log(xPosition(nCol, nRow, space = 100));
+// console.log(yPosition(nCol, nRow, space = 100));
 
 function preload() {
     myData = loadTable("./investments.csv", "csv", "header");
@@ -21,11 +27,9 @@ function setup() {
     let innerWidth = width - margin.left - margin.right;
     let innerHeight = height - margin.top - margin.bottom;
 
-    console.log(innerHeight);
-    console.log(innerWidth);
     c.parent("sketch");
 
-    print(myData.rows); //Can only by printed in setup not preload
+    // print(myData.rows); //Can only by printed in setup not preload
 
     // fix NA values for amts in dataset
     for(let row of myData.rows) {
@@ -68,11 +72,6 @@ function setup() {
         investor.total +=amt;
     }
 
-    print(companies.size);
-    print(investors.size);
-    print(companies);
-    print(investors);
-
     // Compute top companies and investors
     // Array.from takes a list of data, an object we can iterate on
     let tC = Array.from(companies.values());
@@ -81,8 +80,17 @@ function setup() {
     tC.sort((a, b) => b.total - a.total);
     tI.sort((a, b) => b.total - a.total);
 
-    topCompanies = tC.slice(0, 100);
-    topInvestors = tI.slice(0, 100);
+    topCompanies = tC.slice(0, topN);
+    topInvestors = tI.slice(0, topN);
+
+    let xSpace = innerWidth/2/nCol;
+    let ySpace = innerHeight/nRow;
+    console.log(xSpace)
+    console.log(ySpace)
+
+    topCompanies = position(topCompanies, nCol, nRow, xSpace, ySpace);
+    topInvestors = position(topInvestors, nCol, nRow, xSpace, ySpace, xStart = innerWidth/2,);
+    console.log(topInvestors);
 
     for (let c of topCompanies) {
         topCompaniesName.push(c.name);
@@ -91,9 +99,6 @@ function setup() {
     for (let i of topInvestors) {
         topInvestorsName.push(i.name);
     }
-
-    console.log(topCompaniesName);
-    console.log(topInvestorsName);
     
     for(let c of topCompanies) {
         for (let ii of c.investments) {
@@ -114,11 +119,6 @@ function setup() {
             }
         }
     }
-
-    print(topCompanies);
-    print(topInvestors);
-
-    print(topCompanies[0].investments[0]);
 
     rectMode(CENTER);
     // noLoop();
@@ -186,8 +186,6 @@ class Company {
     constructor(name) {
         this.name = name;
         this.investments = [];
-        this.x = random(margin.left, width/2);
-        this.y = random(margin.top, height - margin.bottom);
         this.top = false;
     }
 
@@ -223,8 +221,6 @@ class Investor {
     constructor(name) {
         this.name = name;
         this.investments = [];
-        this.x = random(width/2, width - margin.right);
-        this.y = random(margin.top, height - margin.bottom);
         this.top = false;
     }
 
