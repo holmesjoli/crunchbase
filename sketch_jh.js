@@ -9,6 +9,8 @@ let topInvestors = [];
 let topCompaniesName = []
 let topInvestorsName = [];
 
+let margin = {top: 50, bottom: 50, left: 50, right: 50}
+
 function preload() {
     myData = loadTable("./investments.csv", "csv", "header");
 }
@@ -16,6 +18,11 @@ function preload() {
 function setup() {
 
     let c = createCanvas(windowWidth, windowHeight);
+    let innerWidth = width - margin.left - margin.right;
+    let innerHeight = height - margin.top - margin.bottom;
+
+    console.log(innerHeight);
+    console.log(innerWidth);
     c.parent("sketch");
 
     print(myData.rows); //Can only by printed in setup not preload
@@ -179,8 +186,8 @@ class Company {
     constructor(name) {
         this.name = name;
         this.investments = [];
-        this.x = random(50, width/2);
-        this.y = random(50, height - 50);
+        this.x = random(margin.left, width/2);
+        this.y = random(margin.top, height - margin.bottom);
         this.top = false;
     }
 
@@ -216,8 +223,8 @@ class Investor {
     constructor(name) {
         this.name = name;
         this.investments = [];
-        this.x = random(width/2, width - 50);
-        this.y = random(50, height - 50);
+        this.x = random(width/2, width - margin.right);
+        this.y = random(margin.top, height - margin.bottom);
         this.top = false;
     }
 
