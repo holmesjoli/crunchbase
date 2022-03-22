@@ -87,34 +87,6 @@ function setup() {
 
     console.log(topCompaniesName);
     console.log(topInvestorsName);
-    /*  Verbose sort
-    function fSort(a, b) {
-        let a_amt = a.getNum("amount_usd");
-        let b_amt = b.getNum("amount_usd");
-
-        return b_amt - a_amt;
-
-        // if(a_amt > b_amt) {
-        //     return 1
-        // } else if (a_amt < b_amt) {
-        //     return -1
-        // } else {
-        //     return 0
-        // }
-    }
-    myData.rows.sort(fSort);
-    */
-
-    // myData.rows.sort((a, b) => b.getNum("amount_usd") - a.getNum("amount_usd"));
-
-    // myData.rows = myData.rows.filter((a) => a.getNum("amount_usd") >= 1E8);
-
-    // print(myData.rows.length);
-    // console.log("tC:", topCompanies[0].name);
-    // console.log("# investments:", topCompanies[0].investments.length);
-    // console.log("investments:", topCompanies[0].investments);
-    // console.log("top investor:", topCompanies[0].investments[0].investor.name)
-    // console.log("investor", topCompanies[0].investments[0].investor);
     
     for(let c of topCompanies) {
         for (let ii of c.investments) {
