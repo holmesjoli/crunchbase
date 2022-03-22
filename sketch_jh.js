@@ -179,8 +179,8 @@ class Company {
     constructor(name) {
         this.name = name;
         this.investments = [];
-        this.x = random(0, width/2);
-        this.y = random(0, height);
+        this.x = random(50, width/2);
+        this.y = random(50, height - 50);
         this.top = false;
     }
 
@@ -216,8 +216,8 @@ class Investor {
     constructor(name) {
         this.name = name;
         this.investments = [];
-        this.x = random(width/2, width);
-        this.y = random(0, height);
+        this.x = random(width/2, width - 50);
+        this.y = random(50, height - 50);
         this.top = false;
     }
 
