@@ -87,7 +87,7 @@ function setup() {
 
     topCompanies = position(topCompanies, nCol, nRow, xSpace, ySpace, xStart = margin.left, yStart = margin.top);
     topInvestors = position(topInvestors, nCol, nRow, xSpace, ySpace, xStart = innerWidth/2 + margin.left, yStart = margin.top);
-    console.log(topInvestors);
+    // console.log(topInvestors);
 
     for (let c of topCompanies) {
         topCompaniesName.push(c.name);
@@ -123,17 +123,17 @@ function setup() {
 
 function draw() {
 
-    let xSpace = innerWidth/2/nCol;
-    let xCenter = (width - margin.left - margin.right)/2;
+    // let xSpace = innerWidth/2/nCol;
+    // let xCenter = (width - margin.left - margin.right)/2;
 
     background(203, 221, 255);
     noStroke();
-    hover();
+    // hover();
 
-    fill(0);
-    textSize(26);
-    text("Companies", margin.left - xSpace/2, margin.top);
-    text("Investors", xCenter + margin.left - xSpace/2, margin.top);
+    // fill(0);
+    // textSize(26);
+    // text("Companies", margin.left - xSpace/2, margin.top);
+    // text("Investors", xCenter + margin.left - xSpace/2, margin.top);
 
     for(let c of topCompanies) {
         c.draw();
@@ -144,6 +144,9 @@ function draw() {
             }
         }
     }
+
+    // console.log(topCompanies[0].companyClick);
+    // console.log(topCompanies[0].fillColor);
 
     for (let i of topInvestors) {
         i.draw();
@@ -179,32 +182,44 @@ class Company {
     x;
     y;
     companyHover = false;
+    companyClick = false;
     top;
 
     constructor(name) {
         this.name = name;
         this.investments = [];
         this.top = false;
+        this.fillColor = 'rgba(51, 51, 51, .6)';
     }
 
     radius() {
         return sqrt(this.total / 1E6)/4;
     }
 
-    draw() {
-        if (this.companyHover) {
-            fill(255, 255, 255);
-        } else {
-            fill('rgba(51, 51, 51, .6)');
+    clicked() {
+        if (this.companyClick) {
+            this.fillColor = 0;
         }
+    }
+
+    draw() {
+
+        fill(this.fillColor);
+        this.clicked();
+        // if (this.companyHover) {
+        //     fill(255, 255, 255);
+        // } else {
+        //     fill('rgba(51, 51, 51, .6)');
+        // }
+
         ellipse(this.x, this.y, this.radius()*1.5, this.radius()*1.5);
 
-        if (this.companyHover) {
-            fill(0);
-            textSize(20);
-            text(this.name, this.x - this.xSpace, this.y -margin.top/2);
-            textSize(32);
-        }
+        // if (this.companyHover) {
+        //     fill(0);
+        //     textSize(20);
+        //     text(this.name, this.x - this.xSpace, this.y -margin.top/2);
+        //     textSize(32);
+        // }
     }
 }
 
@@ -215,33 +230,44 @@ class Investor {
     x;
     y;
     investorHover = false;
+    investorClick = false;
     top;
 
     constructor(name) {
         this.name = name;
         this.investments = [];
         this.top = false;
+        this.fillColor = 'rgba(51, 51, 51, .6)';
     }
 
     radius() {
         return sqrt(this.total / 1E6)/4;
     }
 
-    draw() {
-        if (this.investorHover) {
-            fill(255, 255, 255);
-        } else {
-            fill('rgba(51, 51, 51, .6)');
+    clicked() {
+        if(this.investorClick) {
+            this.fillColor = 0;
         }
+    }
+
+    draw() {
+
+        fill(this.fillColor);
+        this.clicked();
+        // if (this.investorHover) {
+        //     fill(255, 255, 255);
+        // } else {
+        //     fill('rgba(51, 51, 51, .6)');
+        // }
 
         rect(this.x, this.y, this.radius()*1.5, this.radius()*1.5, this.radius()/5);
 
-        if (this.investorHover) {
-            fill(0);
-            textSize(20);
-            text(this.name, this.x - this.xSpace, this.y);
-            textSize(32);
-        }
+        // if (this.investorHover) {
+        //     fill(0);
+        //     textSize(20);
+        //     text(this.name, this.x - this.xSpace, this.y);
+        //     textSize(32);
+        // }
     }
 }
 
@@ -279,12 +305,25 @@ class Investment {
     }
 
     draw(company, investor) {
-        this.textHover(company, investor);
+        // this.textHover(company, investor);
         stroke(0, 100);
-        strokeWeight(this.strokeSize(company, investor));
+        // strokeWeight(this.strokeSize(company, investor));
         line(company.x, company.y, investor.x,  investor.y);
         noStroke();
-        
     }
 }
 
+// Title Click
+// Description updates the parameter 'xClick' in each company/investor to be true
+// if the user clicks
+function mousePressed() {
+    for (let c of topCompanies) {
+        let d = dist(c.x, c.y, mouseX, mouseY);
+        c.companyClick = d < c.radius();
+    }
+
+    for (let i of topInvestors) {
+        let d = dist(i.x, i.y, mouseX, mouseY);
+        i.investorClick = d < i.radius();
+    }
+}
