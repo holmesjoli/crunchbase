@@ -123,17 +123,17 @@ function setup() {
 
 function draw() {
 
-    // let xSpace = innerWidth/2/nCol;
-    // let xCenter = (width - margin.left - margin.right)/2;
+    let xSpace = innerWidth/2/nCol;
+    let xCenter = (width - margin.left - margin.right)/2;
 
     background(203, 221, 255);
     noStroke();
     // hover();
 
-    // fill(0);
-    // textSize(26);
-    // text("Companies", margin.left - xSpace/2, margin.top);
-    // text("Investors", xCenter + margin.left - xSpace/2, margin.top);
+    fill(0);
+    textSize(26);
+    text("Companies", margin.left - xSpace/2, margin.top);
+    text("Investors", xCenter + margin.left - xSpace/2, margin.top);
 
     for(let c of topCompanies) {
         c.draw();
