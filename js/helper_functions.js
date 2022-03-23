@@ -64,7 +64,8 @@ function autoLi(value, type, selector = "list-detail") {
 
         let name = value[i][type].name;
         let amt = value[i].amt;
-        text += `<li><b>${name}</b> : ${amt}</li>`;
+        let top = value[i][type].top;
+        text += `<li class=${top}-${type}><b>${name}</b> : ${amt}</li>`;
     }
 
     document.getElementById(selector).innerHTML = text;
