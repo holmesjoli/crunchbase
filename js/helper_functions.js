@@ -55,3 +55,17 @@ function generateMatrix(nObj) {
         nRow: nRow,
     };
 }
+
+// Autopopulate a group of list elements
+function autoLi(value, type, selector = "list-detail") {
+    let text = "";
+
+    for (let i = 0; i < value.length; i++) {
+
+        let name = value[i][type].name;
+        let amt = value[i].amt;
+        text += `<li><b>${name}</b> : ${amt}</li>`;
+    }
+
+    document.getElementById(selector).innerHTML = text;
+}

@@ -9,14 +9,13 @@ let topInvestors = [];
 let topCompaniesName = []
 let topInvestorsName = [];
 
-let margin = {top: 40, bottom: 50, left: 250, right: 10}
+let margin = {top: 40, bottom: 50, left: 75, right: 10}
 let topN = 100;
 let nCol = 10;
 let nRow = topN/nCol;
 
 let companyClickCounter = 0;
 let anyInvestoment = false;
-
 let defaultFillColor = 'rgba(51, 51, 51, .6)';
 
 // console.log(xPosition(nCol, nRow, space = 100));
@@ -29,7 +28,7 @@ function preload() {
 function setup() {
 
     let c = createCanvas(windowWidth, windowHeight);
-    let innerWidth = width - margin.left - margin.right;
+    let innerWidth = width*.85 - margin.left - margin.right;
     let innerHeight = height - margin.top - margin.bottom;
     let xSpace = innerWidth/2/nCol;
     let ySpace = innerHeight/nRow;
@@ -93,6 +92,7 @@ function setup() {
     topCompanies = position(topCompanies, nCol, nRow, xSpace, ySpace, xStart = margin.left, yStart = margin.top);
     topInvestors = position(topInvestors, nCol, nRow, xSpace, ySpace, xStart = innerWidth/2 + margin.left, yStart = margin.top);
     // console.log(topInvestors);
+    console.log(topCompanies[0]);
 
     for (let c of topCompanies) {
         topCompaniesName.push(c.name);
@@ -150,7 +150,7 @@ function draw() {
         }
     }
 
-    console.log(topCompanies[0].companyClick);
+    // console.log(topCompanies[0].companyClick);
 
     for (let i of topInvestors) {
         i.draw();
@@ -226,6 +226,7 @@ class Company {
     clicked() {
         if (this.companyClick) {
             this.fillColor = 0;
+            autoLi(this.investments, "investor");
         } else {
             this.fillColor = defaultFillColor;
         }
@@ -276,6 +277,7 @@ class Investor {
     clicked() {
         if (this.investorClick) {
             this.fillColor = 0;
+            autoLi(this.investments, "company");
         } else {
             this.fillColor = defaultFillColor;
         }

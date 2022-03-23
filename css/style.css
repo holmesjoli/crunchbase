@@ -19,3 +19,21 @@ h1 {
   width: 100%;
   font-weight: 200;
 }
+
+.container {
+  display: flex;
+  flex-direction: row;
+}
+
+#sketch {
+  max-width: 85%;
+}
+
+#detail {
+  max-width: 15%;
+}
+
+ul {
+  text-align: left;
+  font-size: 10pt;
+}
