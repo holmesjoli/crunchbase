@@ -5,6 +5,7 @@ html, body {
   font-family: "Geomanist", sans-serif;
   text-align: center;
   width: 100%;
+  color: white;
 }
 
 canvas {
@@ -12,8 +13,8 @@ canvas {
 }
 
 h1 {
-  background-color: #333;
-  color: white;
+  background-color: #C7DBE6;
+  color: #333;
   margin: 0;
   padding: 20px 0;
   width: 100%;
@@ -37,3 +38,19 @@ ul {
   text-align: left;
   font-size: 10pt;
 }
+
+/* .true-investor {
+  color:
+}
+
+.false-investor {
+  color:
+} */
+
+/* ul li .top-company {
+  color: "#758E4F";
+}
+
+ul li  .top-investor {
+  color: "#758E4F";
+} */

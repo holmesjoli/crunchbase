@@ -65,6 +65,12 @@ function autoLi(value, type, selector = "list-detail") {
         let name = value[i][type].name;
         let amt = value[i].amt;
         let top = value[i][type].top;
+
+        if (top) {
+            top = "top";
+        } else {
+            top = "not-top";
+        }
         text += `<li class=${top}-${type}><b>${name}</b> : ${amt}</li>`;
     }
 
