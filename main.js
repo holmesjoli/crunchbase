@@ -251,6 +251,15 @@ class Company {
         }
     }
 
+    addText() {
+        if (this.companyHover) {
+            fill(defaultTextColor);
+            textSize(18);
+            noStroke();
+            text(this.name, this.x - this.xSpace, this.y-margin.top/2);
+        }
+    }
+
     draw() {
 
         this.clicked();
@@ -262,13 +271,7 @@ class Company {
 
         ellipse(this.x, this.y, this.radius()*1.5, this.radius()*1.5);
 
-        if (this.companyHover) {
-            fill(defaultTextColor);
-            textSize(20);
-            noStroke();
-            text(this.name, this.x - this.xSpace, this.y-margin.top/2);
-            textSize(32);
-        }
+        this.addText();
     }
 }
 
@@ -317,6 +320,15 @@ class Investor {
         }
     }
 
+    addText() {
+        if (this.investorHover) {
+            fill(defaultTextColor);
+            textSize(18);
+            noStroke();
+            text(this.name, this.x - this.xSpace, this.y-margin.top/1.5);
+        }
+    }
+
     draw() {
 
         this.clicked();
@@ -328,13 +340,7 @@ class Investor {
 
         rect(this.x, this.y, this.radius()*1.5, this.radius()*1.5, this.radius()/5);
 
-        if (this.investorHover) {
-            fill(defaultTextColor);
-            textSize(20);
-            noStroke();
-            text(this.name, this.x - this.xSpace, this.y-margin.top/1.5);
-            textSize(32);
-        }
+        this.addText();
     }
 }
 
