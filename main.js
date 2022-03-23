@@ -9,7 +9,7 @@ let topInvestors = [];
 let topCompaniesName = []
 let topInvestorsName = [];
 
-let margin = {top: 50, bottom: 50, left: 250, right: 10}
+let margin = {top: 40, bottom: 50, left: 250, right: 10}
 let topN = 100;
 let nCol = 10;
 let nRow = topN/nCol;
@@ -131,7 +131,7 @@ function draw() {
     hover();
 
     fill(0);
-    textSize(32);
+    textSize(26);
     text("Companies", margin.left - xSpace/2, margin.top);
     text("Investors", xCenter + margin.left - xSpace/2, margin.top);
 
