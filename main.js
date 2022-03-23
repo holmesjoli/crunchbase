@@ -145,9 +145,6 @@ function draw() {
         }
     }
 
-    // console.log(topCompanies[0].companyClick);
-    // console.log(topCompanies[0].fillColor);
-
     for (let i of topInvestors) {
         i.draw();
         for (let ii of i.investments) {
