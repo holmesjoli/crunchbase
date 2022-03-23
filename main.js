@@ -143,25 +143,23 @@ function draw() {
     text("Investors", xCenter + margin.left - xSpace/2, margin.top);
 
     for(let c of topCompanies) {
-        c.draw();
         for (let ii of c.investments) {
             if (ii.investor.top && c.companyHover) {
                 ii.hoverType = "company";
                 ii.draw(ii.company, ii.investor)
             }
         }
+        c.draw();
     }
 
-    // console.log(topCompanies[0].companyClick);
-
     for (let i of topInvestors) {
-        i.draw();
         for (let ii of i.investments) {
             if (ii.company.top && i.investorHover) {
                 ii.hoverType = "investor";
                 ii.draw(ii.company, ii.investor)
             }
         }
+        i.draw();
     }
 }
 
