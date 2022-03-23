@@ -14,8 +14,10 @@ let topN = 100;
 let nCol = 10;
 let nRow = topN/nCol;
 
-let anyCompany = false;
+let companyClickCounter = 0;
 let anyInvestoment = false;
+
+let defaultFillColor = 'rgba(51, 51, 51, .6)';
 
 // console.log(xPosition(nCol, nRow, space = 100));
 // console.log(yPosition(nCol, nRow, space = 100));
@@ -148,6 +150,8 @@ function draw() {
         }
     }
 
+    console.log(topCompanies[0].companyClick);
+
     for (let i of topInvestors) {
         i.draw();
         for (let ii of i.investments) {
@@ -177,15 +181,20 @@ function hover() {
 // Title Click
 // Description updates the parameter 'xClick' in each company/investor to be true
 // if the user clicks
-function mousePressed() {
+function mousePressed(event) {
+
     for (let c of topCompanies) {
         let d = dist(c.x, c.y, mouseX, mouseY);
-        c.companyClick = d < c.radius();
+        if (d < c.radius()) {
+            c.companyClick = !c.companyClick;
+        }
     }
 
     for (let i of topInvestors) {
         let d = dist(i.x, i.y, mouseX, mouseY);
-        i.investorClick = d < i.radius();
+        if (d < i.radius()) {
+            i.investorClick = !i.investorClick;
+        }
     }
 }
 
@@ -207,7 +216,7 @@ class Company {
         this.name = name;
         this.investments = [];
         this.top = false;
-        this.fillColor = 'rgba(51, 51, 51, .6)';
+        this.fillColor = defaultFillColor;
     }
 
     radius() {
@@ -217,6 +226,8 @@ class Company {
     clicked() {
         if (this.companyClick) {
             this.fillColor = 0;
+        } else {
+            this.fillColor = defaultFillColor;
         }
     }
 
@@ -255,7 +266,7 @@ class Investor {
         this.name = name;
         this.investments = [];
         this.top = false;
-        this.fillColor = 'rgba(51, 51, 51, .6)';
+        this.fillColor = defaultFillColor;
     }
 
     radius() {
@@ -263,8 +274,10 @@ class Investor {
     }
 
     clicked() {
-        if(this.investorClick) {
+        if (this.investorClick) {
             this.fillColor = 0;
+        } else {
+            this.fillColor = defaultFillColor;
         }
     }
 
