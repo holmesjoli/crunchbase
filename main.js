@@ -9,7 +9,7 @@ let topInvestors = [];
 let topCompaniesName = []
 let topInvestorsName = [];
 
-let margin = {top: 50, bottom: 50, left: 200, right: 50}
+let margin = {top: 50, bottom: 50, left: 250, right: 10}
 let topN = 100;
 let nCol = 10;
 let nRow = topN/nCol;
@@ -85,8 +85,8 @@ function setup() {
     topCompanies = tC.slice(0, topN);
     topInvestors = tI.slice(0, topN);
 
-    topCompanies = position(topCompanies, nCol, nRow, xSpace, ySpace, xStart = margin.left);
-    topInvestors = position(topInvestors, nCol, nRow, xSpace, ySpace, xStart = innerWidth/2 + margin.left);
+    topCompanies = position(topCompanies, nCol, nRow, xSpace, ySpace, xStart = margin.left, yStart = margin.top);
+    topInvestors = position(topInvestors, nCol, nRow, xSpace, ySpace, xStart = innerWidth/2 + margin.left, yStart = margin.top);
     console.log(topInvestors);
 
     for (let c of topCompanies) {
@@ -124,15 +124,16 @@ function setup() {
 function draw() {
 
     let xSpace = innerWidth/2/nCol;
+    let xCenter = (width - margin.left - margin.right)/2;
 
     background(203, 221, 255);
     noStroke();
     hover();
 
     fill(0);
-    text("Companies", margin.left + xSpace/2, 50);
-    text("Investors", margin.left + innerWidth/2 - margin.right, 50);
     textSize(32);
+    text("Companies", margin.left - xSpace/2, margin.top);
+    text("Investors", xCenter + margin.left - xSpace/2, margin.top);
 
     for(let c of topCompanies) {
         c.draw();
@@ -207,7 +208,7 @@ class Company {
         if (this.companyHover) {
             fill(0);
             textSize(20);
-            text(this.name, this.x - this.xSpace, this.y + 40);
+            text(this.name, this.x - this.xSpace, this.y -margin.top/2);
             textSize(32);
         }
     }
@@ -244,7 +245,7 @@ class Investor {
         if (this.investorHover) {
             fill(0);
             textSize(20);
-            text(this.name, this.x - this.xSpace, this.y + 40);
+            text(this.name, this.x - this.xSpace, this.y);
             textSize(32);
         }
     }

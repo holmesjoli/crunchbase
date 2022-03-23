@@ -3,7 +3,7 @@
 function xPosition(nCol, nRow, xSpace, xStart) {
     const nArray = [];
     for (var i = 1; i <= nCol; i++) {
-        nArray.push(i*xSpace + xStart);
+        nArray.push(i*xSpace + xStart - xSpace);
     }
 
     return [].concat.apply([], Array(nRow).fill(nArray));

@@ -4,6 +4,7 @@ html, body {
   padding: 0;
   font-family: "Geomanist", sans-serif;
   text-align: center;
+  width: 100%;
 }
 
 canvas {
@@ -14,6 +15,7 @@ h1 {
   background-color: #333;
   color: white;
   margin: 0;
-  padding: 20px;
+  padding: 20px 0;
   width: 100%;
+  font-weight: 200;
 }
