@@ -160,17 +160,11 @@ function hover() {
     for (let c of topCompanies) {
         let d = dist(c.x, c.y, mouseX, mouseY);
         c.companyHover = d < c.radius();
-        // for (let ii of c.investments) {
-        //     ii.hoverCompany = c.hover;
-        // }
     }
 
     for (let i of topInvestors) {
         let d = dist(i.x, i.y, mouseX, mouseY);
         i.investorHover = d < i.radius();
-        // for (let ii of i.investments) {
-        //     ii.hoverInvestor = i.hover;
-        // }
     }
 }
 
