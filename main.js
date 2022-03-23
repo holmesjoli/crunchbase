@@ -14,9 +14,9 @@ let topN = 100;
 let nCol = 10;
 let nRow = topN/nCol;
 
-let companyClickCounter = 0;
-let anyInvestoment = false;
 let defaultFillColor = 'rgba(51, 51, 51, .6)';
+let defaultStrokeWeight = 0;
+let defaultStroke = 'rgba(51, 51, 51, .6)';
 
 // console.log(xPosition(nCol, nRow, space = 100));
 // console.log(yPosition(nCol, nRow, space = 100));
@@ -132,13 +132,15 @@ function draw() {
     let xCenter = (width - margin.left - margin.right)/2;
 
     background(203, 221, 255);
-    noStroke();
+    stroke(defaultStroke);
+    strokeWeight(defaultStrokeWeight);
+    // noStroke();
     hover();
 
-    fill(0);
-    textSize(26);
-    text("Companies", margin.left - xSpace/2, margin.top);
-    text("Investors", xCenter + margin.left - xSpace/2, margin.top);
+    // fill(0);
+    // textSize(26);
+    // text("Companies", margin.left - xSpace/2, margin.top);
+    // text("Investors", xCenter + margin.left - xSpace/2, margin.top);
 
     for(let c of topCompanies) {
         c.draw();
@@ -181,7 +183,7 @@ function hover() {
 // Title Click
 // Description updates the parameter 'xClick' in each company/investor to be true
 // if the user clicks
-function mousePressed(event) {
+function mousePressed() {
 
     for (let c of topCompanies) {
         let d = dist(c.x, c.y, mouseX, mouseY);
@@ -211,12 +213,17 @@ class Company {
     companyHover = false;
     companyClick = false;
     top;
+    fillColor;
+    strokeWeight;
+    stroke;
 
     constructor(name) {
         this.name = name;
         this.investments = [];
         this.top = false;
         this.fillColor = defaultFillColor;
+        this.strokeWeight = defaultStrokeWeight;
+        this.stroke = defaultStroke;
     }
 
     radius() {
@@ -232,21 +239,31 @@ class Company {
         }
     }
 
+    hovered() {
+        if(this.companyHover) {
+            this.stroke = "#FFFFFF";
+            this.strokeWeight = 5;
+        } else {
+            this.stroke = defaultStroke;
+            this.strokeWeight = defaultStrokeWeight;
+        }
+    }
+
     draw() {
 
-        fill(this.fillColor);
         this.clicked();
-        if (this.companyHover) {
-            fill(255, 255, 255);
-        } else {
-            fill('rgba(51, 51, 51, .6)');
-        }
+        this.hovered();
+
+        fill(this.fillColor);
+        stroke(this.stroke);
+        strokeWeight(this.strokeWeight);
 
         ellipse(this.x, this.y, this.radius()*1.5, this.radius()*1.5);
 
         if (this.companyHover) {
             fill(0);
             textSize(20);
+            noStroke();
             text(this.name, this.x - this.xSpace, this.y -margin.top/2);
             textSize(32);
         }
@@ -262,12 +279,17 @@ class Investor {
     investorHover = false;
     investorClick = false;
     top;
+    fillColor;
+    strokeWeight;
+    stroke;
 
     constructor(name) {
         this.name = name;
         this.investments = [];
         this.top = false;
         this.fillColor = defaultFillColor;
+        this.strokeWeight = defaultStrokeWeight;
+        this.stroke = defaultStroke;
     }
 
     radius() {
@@ -283,21 +305,31 @@ class Investor {
         }
     }
 
+    hovered() {
+        if(this.investorHover) {
+            this.stroke = "#FFFFFF";
+            this.strokeWeight = 5;
+        } else {
+            this.stroke = defaultStroke;
+            this.strokeWeight = defaultStrokeWeight;
+        }
+    }
+
     draw() {
 
-        fill(this.fillColor);
         this.clicked();
-        if (this.investorHover) {
-            fill(255, 255, 255);
-        } else {
-            fill('rgba(51, 51, 51, .6)');
-        }
+        this.hovered();
+
+        fill(this.fillColor);
+        stroke(this.stroke);
+        strokeWeight(this.strokeWeight);
 
         rect(this.x, this.y, this.radius()*1.5, this.radius()*1.5, this.radius()/5);
 
         if (this.investorHover) {
             fill(0);
             textSize(20);
+            noStroke();
             text(this.name, this.x - this.xSpace, this.y);
             textSize(32);
         }
@@ -340,6 +372,7 @@ class Investment {
     draw(company, investor) {
         this.textHover(company, investor);
         stroke(0, 100);
+        strokeWeight(2);
         // strokeWeight(this.strokeSize(company, investor));
         line(company.x, company.y, investor.x,  investor.y);
         noStroke();
