@@ -14,9 +14,10 @@ let topN = 100;
 let nCol = 10;
 let nRow = topN/nCol;
 
-let defaultFillColor = 'rgba(51, 51, 51, .6)';
+let defaultFillColor = "#C7DBE6";
 let defaultStrokeWeight = 0;
-let defaultStroke = 'rgba(51, 51, 51, .6)';
+let defaultStroke = "#C7DBE6";
+let defaultTextColor = "#FFFFFF";
 
 // console.log(xPosition(nCol, nRow, space = 100));
 // console.log(yPosition(nCol, nRow, space = 100));
@@ -129,18 +130,19 @@ function setup() {
 function draw() {
 
     let xSpace = innerWidth/2/nCol;
-    let xCenter = (width - margin.left - margin.right)/2;
+    let xCenter = (width*.85 - margin.left - margin.right)/2;
 
-    background(203, 221, 255);
+    background("#2D3047");
     stroke(defaultStroke);
     strokeWeight(defaultStrokeWeight);
     // noStroke();
     hover();
 
-    // fill(0);
-    // textSize(26);
-    // text("Companies", margin.left - xSpace/2, margin.top);
-    // text("Investors", xCenter + margin.left - xSpace/2, margin.top);
+    fill(defaultTextColor);
+    
+    textSize(26);
+    text("Companies", margin.left - xSpace/2, margin.top);
+    text("Investors", xCenter + margin.left - xSpace/2, margin.top);
 
     for(let c of topCompanies) {
         c.draw();
@@ -232,7 +234,7 @@ class Company {
 
     clicked() {
         if (this.companyClick) {
-            this.fillColor = 0;
+            this.fillColor = "#758E4F";
             autoLi(this.investments, "investor");
         } else {
             this.fillColor = defaultFillColor;
@@ -242,7 +244,7 @@ class Company {
     hovered() {
         if(this.companyHover) {
             this.stroke = "#FFFFFF";
-            this.strokeWeight = 5;
+            this.strokeWeight = 2;
         } else {
             this.stroke = defaultStroke;
             this.strokeWeight = defaultStrokeWeight;
@@ -261,10 +263,10 @@ class Company {
         ellipse(this.x, this.y, this.radius()*1.5, this.radius()*1.5);
 
         if (this.companyHover) {
-            fill(0);
+            fill(defaultTextColor);
             textSize(20);
             noStroke();
-            text(this.name, this.x - this.xSpace, this.y -margin.top/2);
+            text(this.name, this.x - this.xSpace, this.y-margin.top/2);
             textSize(32);
         }
     }
@@ -298,7 +300,7 @@ class Investor {
 
     clicked() {
         if (this.investorClick) {
-            this.fillColor = 0;
+            this.fillColor = "#F4A259";
             autoLi(this.investments, "company");
         } else {
             this.fillColor = defaultFillColor;
@@ -308,7 +310,7 @@ class Investor {
     hovered() {
         if(this.investorHover) {
             this.stroke = "#FFFFFF";
-            this.strokeWeight = 5;
+            this.strokeWeight = 2;
         } else {
             this.stroke = defaultStroke;
             this.strokeWeight = defaultStrokeWeight;
@@ -327,10 +329,10 @@ class Investor {
         rect(this.x, this.y, this.radius()*1.5, this.radius()*1.5, this.radius()/5);
 
         if (this.investorHover) {
-            fill(0);
+            fill(defaultTextColor);
             textSize(20);
             noStroke();
-            text(this.name, this.x - this.xSpace, this.y);
+            text(this.name, this.x - this.xSpace, this.y-margin.top/1.5);
             textSize(32);
         }
     }
@@ -359,12 +361,12 @@ class Investment {
     }
 
     textHover(company, investor) {
-        fill(0);
-        textSize(20);
+        fill(defaultFillColor);
+        textSize(16);
         if (this.hoverType === "company") {
-            text(investor.name, investor.x - investor.xSpace, investor.y + 40);
+            text(investor.name, investor.x - investor.xSpace/2, investor.y + 30);
         } else if (this.hoverType === "investor") {
-            text(company.name, company.x - company.xSpace, company.y + 40);
+            text(company.name, company.x - company.xSpace/2, company.y + 30);
         }
         textSize(32);
     }
