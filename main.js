@@ -18,9 +18,7 @@ let defaultFillColor = "#C7DBE6";
 let defaultStrokeWeight = 0;
 let defaultStroke = "#C7DBE6";
 let defaultTextColor = "#FFFFFF";
-
-// console.log(xPosition(nCol, nRow, space = 100));
-// console.log(yPosition(nCol, nRow, space = 100));
+let defaultBackgroundColor = "#2D3047";
 
 function preload() {
     myData = loadTable("./data/investments.csv", "csv", "header");
@@ -132,7 +130,7 @@ function draw() {
     let xSpace = innerWidth/2/nCol;
     let xCenter = (width*.85 - margin.left - margin.right)/2;
 
-    background("#2D3047");
+    background(defaultBackgroundColor);
     stroke(defaultStroke);
     strokeWeight(defaultStrokeWeight);
     // noStroke();
@@ -379,7 +377,7 @@ class Investment {
 
     draw(company, investor) {
         this.textHover(company, investor);
-        stroke(0, 100);
+        stroke("rgba(247, 247, 247, .5)");
         strokeWeight(2);
         // strokeWeight(this.strokeSize(company, investor));
         line(company.x, company.y, investor.x,  investor.y);

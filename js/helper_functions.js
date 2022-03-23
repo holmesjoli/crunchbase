@@ -56,14 +56,33 @@ function generateMatrix(nObj) {
     };
 }
 
+// Number formatter
+// From https://stackoverflow.com/questions/9461621/format-a-number-as-2-5k-if-a-thousand-or-more-otherwise-900
+function nFormatter(num, digits) {
+    const lookup = [
+        { value: 1, symbol: "" },
+        { value: 1e3, symbol: " thousand" },
+        { value: 1e6, symbol: " million" },
+        { value: 1e9, symbol: " billion" },
+    ];
+    const rx = /\.0+$|(\.[0-9]*[1-9])0+$/;
+    var item = lookup.slice().reverse().find(function(item) {
+        return num >= item.value;
+    });
+    return item ? (num / item.value).toFixed(digits).replace(rx, "$1") + item.symbol : "0";
+}
+
 // Autopopulate a group of list elements
 function autoLi(value, type, selector = "list-detail") {
     let text = "";
 
+    value.sort((a, b) => b.amt - a.amt);
+    value = value.slice(0, 20);
+
     for (let i = 0; i < value.length; i++) {
 
         let name = value[i][type].name;
-        let amt = value[i].amt;
+        let amt = nFormatter(value[i].amt, 1);
         let top = value[i][type].top;
 
         if (top) {
