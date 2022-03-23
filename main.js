@@ -14,6 +14,9 @@ let topN = 100;
 let nCol = 10;
 let nRow = topN/nCol;
 
+let anyCompany = false;
+let anyInvestoment = false;
+
 // console.log(xPosition(nCol, nRow, space = 100));
 // console.log(yPosition(nCol, nRow, space = 100));
 
@@ -156,6 +159,9 @@ function draw() {
     }
 }
 
+// Title Hover
+// Description updates the parameter 'xHover' in each company/investor to be true
+// if the user hovers
 function hover() {
     for (let c of topCompanies) {
         let d = dist(c.x, c.y, mouseX, mouseY);
@@ -165,6 +171,21 @@ function hover() {
     for (let i of topInvestors) {
         let d = dist(i.x, i.y, mouseX, mouseY);
         i.investorHover = d < i.radius();
+    }
+}
+
+// Title Click
+// Description updates the parameter 'xClick' in each company/investor to be true
+// if the user clicks
+function mousePressed() {
+    for (let c of topCompanies) {
+        let d = dist(c.x, c.y, mouseX, mouseY);
+        c.companyClick = d < c.radius();
+    }
+
+    for (let i of topInvestors) {
+        let d = dist(i.x, i.y, mouseX, mouseY);
+        i.investorClick = d < i.radius();
     }
 }
 
@@ -310,17 +331,3 @@ class Investment {
     }
 }
 
-// Title Click
-// Description updates the parameter 'xClick' in each company/investor to be true
-// if the user clicks
-function mousePressed() {
-    for (let c of topCompanies) {
-        let d = dist(c.x, c.y, mouseX, mouseY);
-        c.companyClick = d < c.radius();
-    }
-
-    for (let i of topInvestors) {
-        let d = dist(i.x, i.y, mouseX, mouseY);
-        i.investorClick = d < i.radius();
-    }
-}
