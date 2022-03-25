@@ -28,8 +28,8 @@ function preload() {
 
 function setup() {
 
-    let c = createCanvas(windowWidth, windowHeight);
-    let innerWidth = width*.85 - margin.left - margin.right;
+    let c = createCanvas(windowWidth*.80, windowHeight*.85);
+    let innerWidth = width - margin.left - margin.right;
     let innerHeight = height - margin.top - margin.bottom;
     let xSpace = innerWidth/2/nCol;
     let ySpace = innerHeight/nRow;
@@ -130,7 +130,7 @@ function setup() {
 function draw() {
 
     let xSpace = innerWidth/2/nCol;
-    let xCenter = (width*.85 - margin.left - margin.right)/2;
+    let xCenter = (width - margin.left - margin.right)/2;
 
     background(defaultBackgroundColor);
     stroke(defaultStroke);
@@ -244,7 +244,7 @@ class Company {
     hovered() {
         if(this.companyHover) {
             this.stroke = "#FFFFFF";
-            this.strokeWeight = 2;
+            this.strokeWeight = 3;
         } else {
             this.stroke = defaultStroke;
             this.strokeWeight = defaultStrokeWeight;
@@ -313,7 +313,7 @@ class Investor {
     hovered() {
         if(this.investorHover) {
             this.stroke = "#FFFFFF";
-            this.strokeWeight = 2;
+            this.strokeWeight = 3;
         } else {
             this.stroke = defaultStroke;
             this.strokeWeight = defaultStrokeWeight;
