@@ -73,7 +73,7 @@ function nFormatter(num, digits) {
 }
 
 // Autopopulate a group of list elements
-function autoLi(value, type, selector = "list-detail") {
+function autoLi(value, type, color, selector = "list-detail") {
     let text = "";
 
     value.sort((a, b) => b.amt - a.amt);
@@ -86,11 +86,11 @@ function autoLi(value, type, selector = "list-detail") {
         let top = value[i][type].top;
 
         if (top) {
-            top = "top";
+            text += `<li style="color:${color}"><b>${name}</b> : ${amt}</li>`;
         } else {
-            top = "not-top";
+            text += `<li>${name} : ${amt}</li>`;
         }
-        text += `<li class=${top}-${type}><b>${name}</b> : ${amt}</li>`;
+        // text += `<li style="red"><b>${name}</b> : ${amt}</li>`;
     }
 
     document.getElementById(selector).innerHTML = text;

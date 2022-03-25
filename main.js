@@ -235,7 +235,7 @@ class Company {
     clicked() {
         if (this.companyClick && this.name === id) {
             this.fillColor = "#758E4F";
-            autoLi(this.investments, "investor");
+            autoLi(this.investments, "investor", this.fillColor);
         } else {
             this.fillColor = defaultFillColor;
         }
@@ -304,7 +304,7 @@ class Investor {
     clicked() {
         if (this.investorClick && this.name === id) {
             this.fillColor = "#F4A259";
-            autoLi(this.investments, "company");
+            autoLi(this.investments, "company", this.fillColor);
         } else {
             this.fillColor = defaultFillColor;
         }
