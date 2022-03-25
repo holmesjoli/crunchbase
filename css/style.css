@@ -64,3 +64,19 @@ li {
 ul li  .top-investor {
   color: "#758E4F";
 } */
+
+ul { 
+  list-style: none;
+  padding-left: 15px;
+}
+
+ul li::before {
+  content: "\25C6"; 
+  font-size: 10px;
+  padding-right: 5px;
+}
+
+li {
+  position: relative;
+  left: 10px;
+}
