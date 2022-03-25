@@ -20,6 +20,8 @@ let defaultStroke = "#C7DBE6";
 let defaultTextColor = "#FFFFFF";
 let defaultBackgroundColor = "#2D3047";
 
+let id = null;
+
 function preload() {
     myData = loadTable("./data/investments.csv", "csv", "header");
 }
@@ -187,6 +189,7 @@ function mousePressed() {
         let d = dist(c.x, c.y, mouseX, mouseY);
         if (d < c.radius()) {
             c.companyClick = !c.companyClick;
+            id = c.name;
         }
     }
 
@@ -194,6 +197,7 @@ function mousePressed() {
         let d = dist(i.x, i.y, mouseX, mouseY);
         if (d < i.radius()) {
             i.investorClick = !i.investorClick;
+            id = i.name;
         }
     }
 }
@@ -229,7 +233,7 @@ class Company {
     }
 
     clicked() {
-        if (this.companyClick) {
+        if (this.companyClick && this.name === id) {
             this.fillColor = "#758E4F";
             autoLi(this.investments, "investor");
         } else {
@@ -298,7 +302,7 @@ class Investor {
     }
 
     clicked() {
-        if (this.investorClick) {
+        if (this.investorClick && this.name === id) {
             this.fillColor = "#F4A259";
             autoLi(this.investments, "company");
         } else {
