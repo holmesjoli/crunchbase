@@ -132,6 +132,7 @@ function draw() {
     let xSpace = innerWidth/2/nCol;
     let xCenter = (width - margin.left - margin.right)/2;
 
+    textFont('Geomanist');
     background(defaultBackgroundColor);
     stroke(defaultStroke);
     strokeWeight(defaultStrokeWeight);
