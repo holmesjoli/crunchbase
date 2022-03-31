@@ -270,7 +270,7 @@ class Company {
         stroke(this.stroke);
         strokeWeight(this.strokeWeight);
 
-        ellipse(this.x, this.y, this.radius()*1.5, this.radius()*1.5);
+        rect(this.x, this.y, this.radius()*1.5, 20);
 
         this.addText();
     }
@@ -339,7 +339,7 @@ class Investor {
         stroke(this.stroke);
         strokeWeight(this.strokeWeight);
 
-        rect(this.x, this.y, this.radius()*1.5, this.radius()*1.5, this.radius()/5);
+        rect(this.x, this.y, this.radius()*1.5, 20);
 
         this.addText();
     }
