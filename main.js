@@ -105,7 +105,7 @@ function setup() {
     
     for(let c of topCompanies) {
         for (let ii of c.investments) {
-            for (n of topInvestorsName) {
+            for (let n of topInvestorsName) {
                 if (n === ii.investor.name) {
                     ii.investor.top = true;
                 };
@@ -115,7 +115,7 @@ function setup() {
 
     for(let i of topInvestors) {
         for (let ii of i.investments) {
-            for (n of topCompaniesName) {
+            for (let n of topCompaniesName) {
                 if (n === ii.company.name) {
                     ii.company.top = true;
                 };
