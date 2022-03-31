@@ -86,11 +86,10 @@ function autoLi(value, type, color, selector = "list-detail") {
         let top = value[i][type].top;
 
         if (top) {
-            text += `<li style="color:${color}"><b>${name}</b> : ${amt}</li>`;
+            text += `<li style="color:${color}"><i>${name}</i> : ${amt}</li>`;
         } else {
             text += `<li>${name} : ${amt}</li>`;
         }
-        // text += `<li style="red"><b>${name}</b> : ${amt}</li>`;
     }
 
     document.getElementById(selector).innerHTML = text;
