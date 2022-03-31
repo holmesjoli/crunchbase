@@ -369,11 +369,11 @@ class Investment {
 
     textHover(company, investor) {
         fill(defaultFillColor);
-        textSize(16);
+        textSize(10);
         if (this.hoverType === "company") {
-            text(investor.name, investor.x - investor.xSpace/2, investor.y + 30);
+            text(investor.name.toUpperCase(), investor.x - investor.xSpace/2, investor.y + 30);
         } else if (this.hoverType === "investor") {
-            text(company.name, company.x - company.xSpace/2, company.y + 30);
+            text(company.name.toUpperCase(), company.x - company.xSpace/2, company.y + 30);
         }
         textSize(32);
     }
