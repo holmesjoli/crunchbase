@@ -13,16 +13,19 @@ canvas {
   display: block;
 }
 
-h1 {
+header {
   background-color: #C7DBE6;
   color: #333;
-  margin: 0;
   padding: 20px 0;
-  width: 100%;
-  font-weight: 200;
+}
+
+h1 {
+  margin: 0;
+  font-weight: 400;
 }
 
 h2 {
+  margin: 0;
   font-weight: 200;
 }
 
