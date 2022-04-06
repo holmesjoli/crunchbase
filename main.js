@@ -14,11 +14,12 @@ let topN = 100;
 let nCol = 10;
 let nRow = topN/nCol;
 
-let defaultFillColor = "#C7DBE6";
+let defaultFillColor = "#BBDEF0";
+
 let defaultStrokeWeight = 0;
 let defaultStroke = "#C7DBE6";
-let defaultTextColor = "#FFFFFF";
-let defaultBackgroundColor = "#2D3047";
+let defaultTextColor = "#000000";
+let defaultBackgroundColor = "#D7D7D7";
 
 let id = null;
 
@@ -133,7 +134,8 @@ function draw() {
     let xCenter = (width - margin.left - margin.right)/2;
 
     textFont('Geomanist');
-    background(defaultBackgroundColor);
+    //background(defaultBackgroundColor);
+    clear();
     stroke(defaultStroke);
     strokeWeight(defaultStrokeWeight);
     // noStroke();
@@ -235,7 +237,7 @@ class Company {
 
     clicked() {
         if (this.companyClick && this.name === id) {
-            this.fillColor = "#758E4F";
+            this.fillColor = "#F49F0A";
             autoLi(this.investments, "investor", this.fillColor);
         } else {
             this.fillColor = defaultFillColor;
@@ -304,7 +306,7 @@ class Investor {
 
     clicked() {
         if (this.investorClick && this.name === id) {
-            this.fillColor = "#F4A259";
+            this.fillColor = "#EFCA08";
             autoLi(this.investments, "company", this.fillColor);
         } else {
             this.fillColor = defaultFillColor;
@@ -368,7 +370,7 @@ class Investment {
     }
 
     textHover(company, investor) {
-        fill(defaultFillColor);
+        fill("black");
         textSize(10);
         if (this.hoverType === "company") {
             text(investor.name.toUpperCase(), investor.x - investor.xSpace/2, investor.y + 30);
@@ -380,7 +382,7 @@ class Investment {
 
     draw(company, investor) {
         this.textHover(company, investor);
-        stroke("rgba(247, 247, 247, .5)");
+        stroke("grey");
         strokeWeight(2);
         // strokeWeight(this.strokeSize(company, investor));
         line(company.x, company.y, investor.x,  investor.y);
