@@ -86,9 +86,9 @@ function autoLi(value, type, color, selector = "list-detail") {
         let top = value[i][type].top;
 
         if (top) {
-            text += `<li style="color:${color}"><span style="text-transform: uppercase;">${name}</span> : ${amt}</li>`;
+            text += `<li><span style="text-transform: uppercase; color:${color}">${name}</span> : ${amt}</li>`;
         } else {
-            text += `<li>${name} : ${amt}</li>`;
+            text += `<li><span style="text-transform: uppercase;">${name}</span> : ${amt}</li>`;
         }
     }
 
