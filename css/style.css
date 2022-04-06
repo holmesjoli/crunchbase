@@ -5,8 +5,8 @@ html, body {
   font-family: "Geomanist", sans-serif;
   text-align: center;
   width: 100%;
-  color: white;
-  background-color: #2D3047;
+  color: black;
+  /* background-color: #00A6A6; */
 }
 
 canvas {
@@ -14,8 +14,8 @@ canvas {
 }
 
 header {
-  background-color: #C7DBE6;
-  color: #333;
+  background-color: #FFD399;
+  color: black;
   padding: 20px 0;
 }
 
