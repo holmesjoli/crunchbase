@@ -9,7 +9,7 @@ let topInvestors = [];
 let topCompaniesName = []
 let topInvestorsName = [];
 
-let margin = {top: 25, bottom: 25, left: 25, right: 25}
+let margin = {top: 35, bottom: 25, left: 25, right: 25}
 let topN = 100;
 let nCol = 10;
 let nRow = topN/nCol;
@@ -115,13 +115,6 @@ function setup() {
     topInvestors = grid(paramsTI, topInvestors);
     console.log(topCompanies);
 
-    // textSize(26);
-    // text("Companies", 200, 200);
-    // text("Investors", xCenter + margin.left - xSpace/2, margin.top);
-
-    // topCompanies = position(topCompanies, nCol, nRow, xSpace, ySpace, xStart = margin.left, yStart = margin.top);
-    // topInvestors = position(topInvestors, nCol, nRow, xSpace, ySpace, xStart = innerWidth/2 + margin.left, yStart = margin.top);
-    // // console.log(topInvestors);
     console.log(topCompanies[0]);
 
     for (let c of topCompanies) {
@@ -159,18 +152,16 @@ function setup() {
 function draw() {
 
     textFont('Geomanist');
-    //background(defaultBackgroundColor);
     clear();
     stroke(defaultStroke);
     strokeWeight(defaultStrokeWeight);
-    // noStroke();
     hover();
 
     fill(defaultTextColor);
     
     textSize(26);
     text("Companies", paramsTC.startPos.x, margin.top);
-    // text("Investors", xCenter + margin.left - xSpace/2, margin.top);
+    text("Investors", paramsTI.startPos.x, margin.top);
 
     for(let c of topCompanies) {
         for (let ii of c.investments) {
