@@ -9,13 +9,29 @@ let topInvestors = [];
 let topCompaniesName = []
 let topInvestorsName = [];
 
-let margin = {top: 40, bottom: 50, left: 75, right: 10}
+let margin = {top: 25, bottom: 25, left: 25, right: 25}
 let topN = 100;
 let nCol = 10;
 let nRow = topN/nCol;
+let vizWidth;
+
+const paramsTC = {
+    startPos: {x: margin.left, y: margin.top},
+    w: vizWidth,
+    h: innerHeight,
+    n: topN,
+    cols: nCol
+}
+
+const paramsTI = {
+    startPos: {x: margin.left + 50, y: margin.top},
+    w: vizWidth,
+    h: innerHeight,
+    n: topN,
+    cols: nCol
+}
 
 let defaultFillColor = "#BBDEF0";
-
 let defaultStrokeWeight = 0;
 let defaultStroke = "#C7DBE6";
 let defaultTextColor = "#000000";
@@ -32,8 +48,12 @@ function setup() {
     let c = createCanvas(windowWidth*.80, windowHeight*.85);
     let innerWidth = width - margin.left - margin.right;
     let innerHeight = height - margin.top - margin.bottom;
-    let xSpace = innerWidth/2/nCol;
-    let ySpace = innerHeight/nRow;
+
+    paramsTC.w = innerWidth/2 - margin.left - margin.right;
+    paramsTI.w = innerWidth/2 - margin.left - margin.right;
+    paramsTI.startPos.x = paramsTI.startPos.x + paramsTI.w
+
+    console.log(paramsTC);
 
     c.parent("sketch");
 
@@ -91,9 +111,17 @@ function setup() {
     topCompanies = tC.slice(0, topN);
     topInvestors = tI.slice(0, topN);
 
-    topCompanies = position(topCompanies, nCol, nRow, xSpace, ySpace, xStart = margin.left, yStart = margin.top);
-    topInvestors = position(topInvestors, nCol, nRow, xSpace, ySpace, xStart = innerWidth/2 + margin.left, yStart = margin.top);
-    // console.log(topInvestors);
+    topCompanies = grid(paramsTC, topCompanies);
+    topInvestors = grid(paramsTI, topInvestors);
+    console.log(topCompanies);
+
+    // textSize(26);
+    // text("Companies", 200, 200);
+    // text("Investors", xCenter + margin.left - xSpace/2, margin.top);
+
+    // topCompanies = position(topCompanies, nCol, nRow, xSpace, ySpace, xStart = margin.left, yStart = margin.top);
+    // topInvestors = position(topInvestors, nCol, nRow, xSpace, ySpace, xStart = innerWidth/2 + margin.left, yStart = margin.top);
+    // // console.log(topInvestors);
     console.log(topCompanies[0]);
 
     for (let c of topCompanies) {
@@ -130,9 +158,6 @@ function setup() {
 
 function draw() {
 
-    let xSpace = innerWidth/2/nCol;
-    let xCenter = (width - margin.left - margin.right)/2;
-
     textFont('Geomanist');
     //background(defaultBackgroundColor);
     clear();
@@ -144,8 +169,8 @@ function draw() {
     fill(defaultTextColor);
     
     textSize(26);
-    text("Companies", margin.left - xSpace/2, margin.top);
-    text("Investors", xCenter + margin.left - xSpace/2, margin.top);
+    text("Companies", paramsTC.startPos.x, margin.top);
+    // text("Investors", xCenter + margin.left - xSpace/2, margin.top);
 
     for(let c of topCompanies) {
         for (let ii of c.investments) {
@@ -174,12 +199,12 @@ function draw() {
 function hover() {
     for (let c of topCompanies) {
         let d = dist(c.x, c.y, mouseX, mouseY);
-        c.companyHover = d < c.radius();
+        c.companyHover = d < c.radius;
     }
 
     for (let i of topInvestors) {
         let d = dist(i.x, i.y, mouseX, mouseY);
-        i.investorHover = d < i.radius();
+        i.investorHover = d < i.radius;
     }
 }
 
@@ -190,7 +215,7 @@ function mousePressed() {
 
     for (let c of topCompanies) {
         let d = dist(c.x, c.y, mouseX, mouseY);
-        if (d < c.radius()) {
+        if (d < c.radius) {
             c.companyClick = !c.companyClick;
             id = c.name;
         }
@@ -198,7 +223,7 @@ function mousePressed() {
 
     for (let i of topInvestors) {
         let d = dist(i.x, i.y, mouseX, mouseY);
-        if (d < i.radius()) {
+        if (d < i.radius) {
             i.investorClick = !i.investorClick;
             id = i.name;
         }
@@ -229,9 +254,10 @@ class Company {
         this.fillColor = defaultFillColor;
         this.strokeWeight = defaultStrokeWeight;
         this.stroke = defaultStroke;
+        this.radius = this.createRadius()
     }
 
-    radius() {
+    createRadius() {
         return sqrt(this.total / 1E6)/4;
     }
 
@@ -272,7 +298,7 @@ class Company {
         stroke(this.stroke);
         strokeWeight(this.strokeWeight);
 
-        rect(this.x, this.y, this.radius()*1.5, 20);
+        rect(this.x, this.y, this.createRadius()*1.5, 20);
 
         this.addText();
     }
@@ -298,9 +324,10 @@ class Investor {
         this.fillColor = defaultFillColor;
         this.strokeWeight = defaultStrokeWeight;
         this.stroke = defaultStroke;
+        this.radius = this.createRadius();
     }
 
-    radius() {
+    createRadius() {
         return sqrt(this.total / 1E6)/4;
     }
 
@@ -341,7 +368,7 @@ class Investor {
         stroke(this.stroke);
         strokeWeight(this.strokeWeight);
 
-        rect(this.x, this.y, this.radius()*1.5, 20);
+        rect(this.x, this.y, this.createRadius()*1.5, 20);
 
         this.addText();
     }
