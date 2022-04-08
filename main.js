@@ -166,13 +166,20 @@ function draw() {
     text("Investors", paramsTI.startPos.x - topInvestors[0].radius, margin.top/2);
 
     for(let c of topCompanies) {
+        c.draw();
+    }
+
+    for (let i of topInvestors) {
+        i.draw();
+    }
+
+    for(let c of topCompanies) {
         for (let ii of c.investments) {
             if (ii.investor.top && c.companyHover) {
                 ii.hoverType = "company";
                 ii.draw(ii.company, ii.investor)
             }
         }
-        c.draw();
     }
 
     for (let i of topInvestors) {
@@ -182,8 +189,9 @@ function draw() {
                 ii.draw(ii.company, ii.investor)
             }
         }
-        i.draw();
     }
+
+
 }
 
 // Title Hover
@@ -383,9 +391,9 @@ class Investment {
         fill("black");
         textSize(10);
         if (this.hoverType === "company") {
-            text(investor.name.toUpperCase(), investor.x, investor.y);
+            text(investor.name.toUpperCase(), investor.x, investor.y + investor.radius/2 -2);
         } else if (this.hoverType === "investor") {
-            text(company.name.toUpperCase(), company.x, company.y);
+            text(company.name.toUpperCase(), company.x, company.y + company.radius/2 -2);
         }
         textSize(32);
     }
@@ -394,7 +402,6 @@ class Investment {
         this.textHover(company, investor);
         stroke("grey");
         strokeWeight(2);
-        // strokeWeight(this.strokeSize(company, investor));
         line(company.x, company.y, investor.x,  investor.y);
         noStroke();
     }
