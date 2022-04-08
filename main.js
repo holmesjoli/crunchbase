@@ -162,6 +162,7 @@ function draw() {
     fill(defaultTextColor);
     
     textSize(26);
+    textAlign(LEFT, CENTER);
     text("Companies", paramsTC.startPos.x - topCompanies[0].radius, margin.top/2);
     text("Investors", paramsTI.startPos.x - topInvestors[0].radius, margin.top/2);
 
@@ -281,7 +282,8 @@ class Company {
             fill(defaultTextColor);
             textSize(16);
             noStroke();
-            text(this.name, this.x - this.radius/2 - 3, this.y - this.radius/2 - 3);
+            textAlign(RIGHT, CENTER);
+            text(this.name, this.x - this.radius/2 - 3, this.y);
         }
     }
 
@@ -346,7 +348,8 @@ class Investor {
             fill(defaultTextColor);
             textSize(16);
             noStroke();
-            text(this.name, this.x - this.radius/2 - 3, this.y - this.radius/2 - 3);
+            textAlign(LEFT, CENTER);
+            text(this.name, this.x + this.radius/2 + 3, this.y);
         }
     }
 
@@ -391,9 +394,11 @@ class Investment {
         fill("black");
         textSize(10);
         if (this.hoverType === "company") {
-            text(investor.name.toUpperCase(), investor.x, investor.y + investor.radius/2 -2);
+            textAlign(LEFT, CENTER);
+            text(investor.name.toUpperCase(), investor.x + 3, investor.y);
         } else if (this.hoverType === "investor") {
-            text(company.name.toUpperCase(), company.x, company.y + company.radius/2 -2);
+            textAlign(RIGHT, CENTER);
+            text(company.name.toUpperCase(), company.x - 3, company.y);
         }
         textSize(32);
     }
