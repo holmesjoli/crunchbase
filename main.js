@@ -192,7 +192,6 @@ function draw() {
 function hover() {
     for (let c of topCompanies) {
         let d = dist(c.x, c.y, mouseX, mouseY);
-        console.log(c.radius);
         c.companyHover = d < c.radius;
     }
 
