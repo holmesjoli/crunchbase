@@ -274,7 +274,7 @@ class Company {
             fill(defaultTextColor);
             textSize(16);
             noStroke();
-            text(this.name, this.x, this.y - this.radius);
+            text(this.name, this.x - this.radius/2 - 3, this.y - this.radius/2 - 3);
         }
     }
 
@@ -287,7 +287,7 @@ class Company {
         stroke(this.stroke);
         strokeWeight(this.strokeWeight);
 
-        rect(this.x, this.y, this.radius*1.5, this.radius*1.5);
+        rect(this.x, this.y, this.radius, this.radius);
 
         this.addText();
     }
@@ -339,7 +339,7 @@ class Investor {
             fill(defaultTextColor);
             textSize(16);
             noStroke();
-            text(this.name, this.x, this.y - this.radius);
+            text(this.name, this.x - this.radius/2 - 3, this.y - this.radius/2 - 3);
         }
     }
 
@@ -352,7 +352,7 @@ class Investor {
         stroke(this.stroke);
         strokeWeight(this.strokeWeight);
 
-        rect(this.x, this.y, this.radius*1.5, this.radius*1.5);
+        rect(this.x, this.y, this.radius, this.radius);
 
         this.addText();
     }
