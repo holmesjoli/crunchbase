@@ -9,9 +9,9 @@ let topInvestors = [];
 let topCompaniesName = []
 let topInvestorsName = [];
 
-let margin = {top: 50, bottom: 25, left: 50, right: 25}
-let topN = 100;
-let nCol = 10;
+let margin = {top: 75, bottom: 25, left: 50, right: 25}
+let topN = 144;
+let nCol = 12;
 let nRow = topN/nCol;
 let vizWidth;
 
@@ -45,7 +45,7 @@ function preload() {
 
 function setup() {
 
-    let c = createCanvas(windowWidth*.85, windowHeight*.85);
+    let c = createCanvas(windowWidth*.80, windowHeight*.85);
     let innerWidth = width - margin.left - margin.right;
     let innerHeight = height - margin.top - margin.bottom;
 
@@ -147,7 +147,7 @@ function setup() {
         }
     }
 
-    // rectMode(CENTER);
+    rectMode(CENTER);
     // noLoop();
 }
 
@@ -162,8 +162,8 @@ function draw() {
     fill(defaultTextColor);
     
     textSize(26);
-    text("Companies", paramsTC.startPos.x, margin.top/2);
-    text("Investors", paramsTI.startPos.x, margin.top/2);
+    text("Companies", paramsTC.startPos.x - topCompanies[0].radius, margin.top/2);
+    text("Investors", paramsTI.startPos.x - topInvestors[0].radius, margin.top/2);
 
     for(let c of topCompanies) {
         for (let ii of c.investments) {
@@ -192,6 +192,7 @@ function draw() {
 function hover() {
     for (let c of topCompanies) {
         let d = dist(c.x, c.y, mouseX, mouseY);
+        console.log(c.radius);
         c.companyHover = d < c.radius;
     }
 
@@ -247,11 +248,6 @@ class Company {
         this.fillColor = defaultFillColor;
         this.strokeWeight = defaultStrokeWeight;
         this.stroke = defaultStroke;
-        this.radius = this.createRadius()
-    }
-
-    createRadius() {
-        return sqrt(this.total / 1E6)/4;
     }
 
     clicked() {
@@ -265,7 +261,7 @@ class Company {
 
     hovered() {
         if(this.companyHover) {
-            this.stroke = "#FFFFFF";
+            this.stroke = "#FFD399";
             this.strokeWeight = 3;
         } else {
             this.stroke = defaultStroke;
@@ -276,9 +272,9 @@ class Company {
     addText() {
         if (this.companyHover) {
             fill(defaultTextColor);
-            textSize(18);
+            textSize(16);
             noStroke();
-            text(this.name, this.x - this.xSpace, this.y-margin.top/2);
+            text(this.name, this.x, this.y - this.radius);
         }
     }
 
@@ -291,7 +287,7 @@ class Company {
         stroke(this.stroke);
         strokeWeight(this.strokeWeight);
 
-        rect(this.x, this.y, this.createRadius()*1.5, 20);
+        rect(this.x, this.y, this.radius*1.5, this.radius*1.5);
 
         this.addText();
     }
@@ -317,11 +313,6 @@ class Investor {
         this.fillColor = defaultFillColor;
         this.strokeWeight = defaultStrokeWeight;
         this.stroke = defaultStroke;
-        this.radius = this.createRadius();
-    }
-
-    createRadius() {
-        return sqrt(this.total / 1E6)/4;
     }
 
     clicked() {
@@ -335,7 +326,7 @@ class Investor {
 
     hovered() {
         if(this.investorHover) {
-            this.stroke = "#FFFFFF";
+            this.stroke = "#F49F0A";
             this.strokeWeight = 3;
         } else {
             this.stroke = defaultStroke;
@@ -346,9 +337,9 @@ class Investor {
     addText() {
         if (this.investorHover) {
             fill(defaultTextColor);
-            textSize(18);
+            textSize(16);
             noStroke();
-            text(this.name, this.x - this.xSpace, this.y-margin.top/1.5);
+            text(this.name, this.x, this.y - this.radius);
         }
     }
 
@@ -361,7 +352,7 @@ class Investor {
         stroke(this.stroke);
         strokeWeight(this.strokeWeight);
 
-        rect(this.x, this.y, this.createRadius()*1.5, 20);
+        rect(this.x, this.y, this.radius*1.5, this.radius*1.5);
 
         this.addText();
     }
@@ -393,9 +384,9 @@ class Investment {
         fill("black");
         textSize(10);
         if (this.hoverType === "company") {
-            text(investor.name.toUpperCase(), investor.x - investor.xSpace/2, investor.y + 30);
+            text(investor.name.toUpperCase(), investor.x, investor.y);
         } else if (this.hoverType === "investor") {
-            text(company.name.toUpperCase(), company.x - company.xSpace/2, company.y + 30);
+            text(company.name.toUpperCase(), company.x, company.y);
         }
         textSize(32);
     }
