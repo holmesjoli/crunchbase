@@ -276,7 +276,7 @@ class Company {
             fill(defaultTextColor);
             textSize(18);
             noStroke();
-            text(this.name, this.x - this.xSpace, this.y-margin.top/2);
+            text(this.name, this.x, this.y-margin.top/2);
         }
     }
 
@@ -346,7 +346,7 @@ class Investor {
             fill(defaultTextColor);
             textSize(18);
             noStroke();
-            text(this.name, this.x - this.xSpace, this.y-margin.top/1.5);
+            text(this.name, this.x, this.y-margin.top/1.5);
         }
     }
 
@@ -391,9 +391,9 @@ class Investment {
         fill("black");
         textSize(10);
         if (this.hoverType === "company") {
-            text(investor.name.toUpperCase(), investor.x - investor.xSpace/2, investor.y + 30);
+            text(investor.name.toUpperCase(), investor.x, investor.y + 30);
         } else if (this.hoverType === "investor") {
-            text(company.name.toUpperCase(), company.x - company.xSpace/2, company.y + 30);
+            text(company.name.toUpperCase(), company.x, company.y + 30);
         }
         textSize(32);
     }
