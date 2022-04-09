@@ -278,7 +278,7 @@ class Company {
             textSize(18);
             noStroke();
             textAlign(RIGHT, CENTER);
-            text(this.name, this.x - this.radius/2 - 3, this.y);
+            text(this.name, this.x - this.radius/2 - 3, this.y - this.radius);
         }
     }
 
@@ -343,9 +343,8 @@ class Investor {
             fill(defaultTextColor);
             textSize(18);
             noStroke();
-            text(this.name, this.x, this.y-margin.top/1.5);
-            // textAlign(LEFT, CENTER);
-            // text(this.name, this.x + this.radius/2 + 3, this.y);
+            textAlign(LEFT, CENTER);
+            text(this.name, this.x + this.radius/2 + 3, this.y-this.radius);
         }
     }
 
