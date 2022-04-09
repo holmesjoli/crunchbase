@@ -9,7 +9,7 @@ let topInvestors = [];
 let topCompaniesName = []
 let topInvestorsName = [];
 
-let margin = {top: 35, bottom: 25, left: 25, right: 25}
+let margin = {top: 75, bottom: 10, left: 75, right: 0}
 let topN = 100;
 let nCol = 10;
 let nRow = topN/nCol;
@@ -160,8 +160,8 @@ function draw() {
     fill(defaultTextColor);
     
     textSize(26);
-    text("Companies", paramsTC.startPos.x, margin.top);
-    text("Investors", paramsTI.startPos.x, margin.top);
+    text("Companies", paramsTC.startPos.x - topCompanies[0].radius, margin.top/2);
+    text("Investors", paramsTI.startPos.x - topInvestors[0].radius, margin.top/2);
 
     for(let c of topCompanies) {
         for (let ii of c.investments) {
