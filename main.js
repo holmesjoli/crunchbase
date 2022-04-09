@@ -24,7 +24,7 @@ const paramsTC = {
 }
 
 const paramsTI = {
-    startPos: {x: margin.left + 50, y: margin.top},
+    startPos: {x: margin.left + 75, y: margin.top},
     w: vizWidth,
     h: innerHeight,
     n: topN,
@@ -45,7 +45,7 @@ function preload() {
 
 function setup() {
 
-    let c = createCanvas(windowWidth*.80, windowHeight*.85);
+    let c = createCanvas(windowWidth*.83, windowHeight*.85);
     let innerWidth = width - margin.left - margin.right;
     let innerHeight = height - margin.top - margin.bottom;
 
