@@ -401,8 +401,7 @@ class Investment {
     draw(company, investor) {
         this.textHover(company, investor);
         stroke("grey");
-        strokeWeight(2);
-        // strokeWeight(this.strokeSize(company, investor));
+        strokeWeight(1);
         line(company.x, company.y, investor.x,  investor.y);
         noStroke();
     }
