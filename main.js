@@ -162,6 +162,13 @@ function draw() {
     textSize(26);
     text("Companies", paramsTC.startPos.x - topCompanies[0].radius, margin.top/2);
     text("Investors", paramsTI.startPos.x - topInvestors[0].radius, margin.top/2);
+    for(let c of topCompanies) {
+        c.draw();
+    }
+
+    for (let i of topInvestors) {
+        i.draw();
+    }
 
     for(let c of topCompanies) {
         for (let ii of c.investments) {
@@ -170,7 +177,6 @@ function draw() {
                 ii.draw(ii.company, ii.investor)
             }
         }
-        c.draw();
     }
 
     for (let i of topInvestors) {
@@ -180,7 +186,6 @@ function draw() {
                 ii.draw(ii.company, ii.investor)
             }
         }
-        i.draw();
     }
 }
 
