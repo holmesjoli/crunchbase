@@ -245,11 +245,6 @@ class Company {
         this.fillColor = defaultFillColor;
         this.strokeWeight = defaultStrokeWeight;
         this.stroke = defaultStroke;
-        this.radius = this.createRadius()
-    }
-
-    createRadius() {
-        return sqrt(this.total / 1E6)/4;
     }
 
     clicked() {
@@ -289,7 +284,7 @@ class Company {
         stroke(this.stroke);
         strokeWeight(this.strokeWeight);
 
-        rect(this.x, this.y, this.createRadius()*1.5, 20);
+        rect(this.x, this.y, this.radius, this.radius);
 
         this.addText();
     }
@@ -315,11 +310,6 @@ class Investor {
         this.fillColor = defaultFillColor;
         this.strokeWeight = defaultStrokeWeight;
         this.stroke = defaultStroke;
-        this.radius = this.createRadius();
-    }
-
-    createRadius() {
-        return sqrt(this.total / 1E6)/4;
     }
 
     clicked() {
@@ -359,7 +349,7 @@ class Investor {
         stroke(this.stroke);
         strokeWeight(this.strokeWeight);
 
-        rect(this.x, this.y, this.createRadius()*1.5, 20);
+        rect(this.x, this.y, this.radius, this.radius);
 
         this.addText();
     }
