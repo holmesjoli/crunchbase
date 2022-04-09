@@ -45,7 +45,7 @@ function preload() {
 
 function setup() {
 
-    let c = createCanvas(windowWidth*.85, windowHeight*.85);
+    let c = createCanvas(windowWidth*.83, windowHeight*.85);
     let innerWidth = width - margin.left - margin.right;
     let innerHeight = height - margin.top - margin.bottom;
 
@@ -54,8 +54,6 @@ function setup() {
     paramsTI.w = innerWidth/2 - margin.left - margin.right;
     paramsTI.startPos.x = paramsTI.startPos.x + paramsTI.w;
     paramsTI.h = innerHeight;
-
-    console.log(paramsTC);
 
     c.parent("sketch");
 
@@ -283,7 +281,7 @@ class Company {
             textSize(16);
             noStroke();
             textAlign(RIGHT, CENTER);
-            text(this.name, this.x - this.radius/2 - 3, this.y);
+            text(this.name, this.x - this.radius/2 - 3, this.y - this.radius);
         }
     }
 
@@ -335,7 +333,7 @@ class Investor {
 
     hovered() {
         if(this.investorHover) {
-            this.stroke = "#F49F0A";
+            this.stroke = "#FFD399";
             this.strokeWeight = 3;
         } else {
             this.stroke = defaultStroke;
@@ -349,7 +347,7 @@ class Investor {
             textSize(16);
             noStroke();
             textAlign(LEFT, CENTER);
-            text(this.name, this.x + this.radius/2 + 3, this.y);
+            text(this.name, this.x + this.radius/2 + 3, this.y-this.radius);
         }
     }
 
@@ -406,7 +404,7 @@ class Investment {
     draw(company, investor) {
         this.textHover(company, investor);
         stroke("grey");
-        strokeWeight(2);
+        strokeWeight(1);
         line(company.x, company.y, investor.x,  investor.y);
         noStroke();
     }

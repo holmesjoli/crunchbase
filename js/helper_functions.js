@@ -10,9 +10,10 @@ function grid(params, top) {
         let col = i % params.cols;
         let row = Math.floor(i / params.cols);
 
-        top[i].radius = (sqrt(top[i].total / 1E6)/5)*1.5;
+        top[i].radius = sqrt(top[i].total / 1E6)/4;
         top[i].x = params.startPos.x + (colW * col)
         top[i].y = params.startPos.y + (rowH * row)
+        console.log(top[i])
     }
 
     return top;
