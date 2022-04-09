@@ -160,6 +160,7 @@ function draw() {
     fill(defaultTextColor);
     
     textSize(26);
+    textAlign(LEFT, CENTER);
     text("Companies", paramsTC.startPos.x - topCompanies[0].radius, margin.top/2);
     text("Investors", paramsTI.startPos.x - topInvestors[0].radius, margin.top/2);
     for(let c of topCompanies) {
@@ -386,9 +387,11 @@ class Investment {
         fill("black");
         textSize(10);
         if (this.hoverType === "company") {
-            text(investor.name.toUpperCase(), investor.x, investor.y + 30);
+            textAlign(LEFT, CENTER);
+            text(investor.name.toUpperCase(), investor.x + 3, investor.y);
         } else if (this.hoverType === "investor") {
-            text(company.name.toUpperCase(), company.x, company.y + 30);
+            textAlign(RIGHT, CENTER);
+            text(company.name.toUpperCase(), company.x - 3, company.y);
         }
         textSize(32);
     }
