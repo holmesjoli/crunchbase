@@ -10,8 +10,8 @@ let topCompaniesName = []
 let topInvestorsName = [];
 
 let margin = {top: 75, bottom: 10, left: 75, right: 0}
-let topN = 100;
-let nCol = 10;
+let topN = 144;
+let nCol = 12;
 let nRow = topN/nCol;
 let vizWidth;
 
