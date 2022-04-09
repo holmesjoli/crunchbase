@@ -35,12 +35,13 @@ h2 {
 }
 
 #sketch {
+  min-width: 80%;
   max-width: 85%;
 }
 
 #detail {
-  max-width: 15%;
-  padding-top: 20px;
+  max-width: 17%;
+  padding-top: 25px;
 }
 
 ul {
