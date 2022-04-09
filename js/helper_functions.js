@@ -11,8 +11,8 @@ function grid(params, top) {
         let row = Math.floor(i / params.cols);
 
         top[i].radius = sqrt(top[i].total / 1E6)/4;
-        top[i].x = params.startPos.x + top[i].radius + (colW * col)
-        top[i].y = params.startPos.y + top[i].radius + (rowH * row)
+        top[i].x = params.startPos.x + (colW * col)
+        top[i].y = params.startPos.y + (rowH * row)
         console.log(top[i])
     }
 
