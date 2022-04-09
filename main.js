@@ -263,7 +263,7 @@ class Company {
 
     hovered() {
         if(this.companyHover) {
-            this.stroke = "#FFFFFF";
+            this.stroke = "#FFD399";
             this.strokeWeight = 3;
         } else {
             this.stroke = defaultStroke;
@@ -333,7 +333,7 @@ class Investor {
 
     hovered() {
         if(this.investorHover) {
-            this.stroke = "#FFFFFF";
+            this.stroke = "#FFD399";
             this.strokeWeight = 3;
         } else {
             this.stroke = defaultStroke;
