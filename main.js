@@ -50,10 +50,10 @@ function setup() {
     let innerHeight = height - margin.top - margin.bottom;
 
     paramsTC.w = innerWidth/2 - margin.left - margin.right;
+    paramsTC.h = innerHeight;
     paramsTI.w = innerWidth/2 - margin.left - margin.right;
-    paramsTI.startPos.x = paramsTI.startPos.x + paramsTI.w
-
-    console.log(paramsTC);
+    paramsTI.startPos.x = paramsTI.startPos.x + paramsTI.w;
+    paramsTI.h = innerHeight;
 
     c.parent("sketch");
 
